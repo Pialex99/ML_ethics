@@ -1,33 +1,34 @@
 ﻿# The script of the game goes in this file.
 
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
+define narator = Character("Narator", color="#ffffff")
 
-define e = Character("Eileen")
+define me = Character("Me", color="#c8c8ff")
+define friend = Character("ML enthousiastic friend")
+define firend = Character("Another ML enthousiastic friend")
+define firend2 = Character("Still another ML enthousiastic friend")
+define firend3 = Character("Fourth ML enthousiastic friend")
 
-
-# The game starts here.
 
 label start:
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
+menu:
 
-    scene bg room
+    "Deepfake":
+        jump deepfake
 
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
+    "Quit":
+        return
 
-    show eileen happy
+label deepfake:
 
-    # These display lines of dialogue.
+    show friends happy
 
-    e "You've created a new Ren'Py game."
+    friend "Hey ! Since we are all interessted in ML why don't we make a small competition together ?"
 
-    e "Once you add a story, pictures, and music, you can release it to the world!"
+    firend "Yeah ! Great idea !!"
+    firend2 "We could compete with a game like chess or something like that ?"
+    firend3 "Or since the classes are prerecorded, we could train models to make deepfakes of the teachers"
 
-    # This ends the game.
+    "All together" "Oh yes ! Great idea !!"
 
-    return
+    jump start
