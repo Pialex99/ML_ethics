@@ -102,6 +102,73 @@ label deepfake:
 
     "All together" "Oh yes ! Great idea !!"
 
+    me "Sure but we have to agree that we will keep the resulting videos between us, ok ?"
+
+    "EveryBody" "Yeah sure"
+
+    friend0 "Cool, so it is settled. Lets meet in a few weeks to share our results."
+
+    narrator "During the development, you wonder if you should make the generated videos undisguisable from a true video"
+
+    menu :
+        "Yes, undisguisable":
+            jump deepfake_undisguisable 
+        "No, add a small detail to recognize the generated videos":
+            jump deepfake_recognizable
+    
+
+label deepfake_undisguisable :
+    narrator "You work very hard and the results are stunning ! Well done !"
+    narrator "Unfortunalty, even with all the energy you put in it, your program doesn't seems to want to generate perfect videos."
+    narrator "With all the time you have invested in it, you have noticed that it allways include a ring on the right middle finger of everybody in the videos and you can't figure out why it does that."
+    $ detail = "ring"
+    jump deepfake_adter_detail
+
+label deepfake_recognizable :
+    narrator "You decide to automaticaly add a small detail. Which one do you want ?"
+
+    menu :
+        "Add a ring on every fingers":
+            $ detail = "rings"
+            jump deepfake_after_detail
+        "Add a hat on everybody's head":
+            $ detail = "hat"
+            jump deepfake_after_detail
+        "Add a earring to everybody":
+            $ detail = "earring"
+            jump deepfake_after_detail
+
+label deepfake_after_detail:
+    narrator "A few weeks laters..."
+
+    narrator "You and your friends regroup to watch the results. Most of your friends’ work are not really convincing but yours and one of your friends’ are both awesome and so you decide to vote on who should win … "
+    narrator "It is very close but you win the bet !!"
+
+    narrator "Your final opponent is mad at you and out of an angry outburst he/she puts your work online !!!"
+    
+    narrator "You are very angry at your friend but the video is online and so nothing else can be done !!"
+
+    narrator "Soon after an enterprise contacts you with a very interesting offer to buy your program to make advertisements"
+
+    menu :
+        narrator "Do you accept the offer ?"
+        
+        "Yes":
+            jump deepfake_offer_accepted
+label deepfake_offer_accepted:
+    show you rich 
+    narrator "You are now rich !!"
+
+    show you dubious
+    narrator "At the next election, you realise that something is off with one of the videos about the election." 
+    
+    show politician
+    "Politian" "We will make Switzerland great again by curing every homosexual personne !!"
+
+    show you watching video
+    narrator "You decide to rewatch the video and realise that it includes the [detail] that your algorithm creates."
+    
+    show you shocked
+    me "No doubts, the video has been created by my program !!!"
+    
     jump start
-
-
