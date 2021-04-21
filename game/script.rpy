@@ -232,66 +232,72 @@ label deepfake:
     narrator "During the development, you wonder if you should make the generated videos indistinguishable from a true video."
 
     menu :
-        "Yes, indistinguishable.":
-            jump deepfake_undisguisable 
-        "No, add a small detail to recognize the generated videos,":
-            jump deepfake_recognizable
-    
+        "Yes, undisguisable":
+            narrator "You work very hard and the results are stunning ! Well done !"
+            narrator "Unfortunalty, even with all the energy you put in it, your program doesn't seems to want to generate perfect videos."
+            narrator "With all the time you have invested in it, you have noticed that it allways include a ring on the right middle finger of everybody in the videos and you can't figure out why it does that."
+            $ detail = "ring"
 
-label deepfake_undisguisable :
-    narrator "You work very hard and the results are stunning ! Well done !"
-    narrator "Unfortunately, even with all the energy you put in it, your program doesn't seem to want to generate perfect videos."
-    narrator "With all the time you have invested in it, you have noticed that it always include a ring on the right middle finger of everybody in the videos and you can't figure out why it does that."
-    $ detail = "ring"
-    jump deepfake_after_detail
+        "No, add a small detail to recognize the generated videos":
 
-label deepfake_recognizable :
-    narrator "You decide to automatically add a small detail. Which one do you want ?"
+            menu :
+                narrator "You decide to automaticaly add a small detail. Which one do you want ?"
+                # maybe put something more "discret" instead ? like a spot on the forehead I don't know ?
+                "Add a ring on every fingers":
+                    $ detail = "rings"
 
-    menu :
-        "Add a ring on every fingers":
-            $ detail = "rings"
-            jump deepfake_after_detail
-        # maybe put something more "discret" instead ? like a spot on the forehead I don't know ?
-        "Add a hat on everybody's head":
-            $ detail = "hat"
-            jump deepfake_after_detail
-        "Add a earring to everybody's ear":
-            $ detail = "earring"
-            jump deepfake_after_detail
+                "Add a hat on everybody's head":
+                    $ detail = "hat"
+                    
+                "Add a earring to everybody":
+                    $ detail = "earring"
+            
 
-label deepfake_after_detail:
-    narrator "A few weeks later..."
+    narrator "A few weeks laters..."
 
-    narrator "You and your friends get together to watch the results. Most of your friends’ work is not really convincing but yours and one of your friends’ are both awesome and so you decide to vote on who should win … "
+    narrator "You and your friends regroup to watch the results. Most of your friends’ work are not really convincing but yours and one of your friends’ are both awesome and so you decide to vote on who should win..."
+    narrator "It is very close but you win the bet !!"
 
     # maybe put a Deep Fake video ? here or at the end somewhere ?
 
-    narrator "It is very close but you win the bet !"
-
-    narrator "Your opponent is mad at you and in an angry outburst he/she puts your work online !"
+    show mad friend
+    narrator "Your final opponent is mad at you and out of an angry outburst he/she puts your work online !!!"
     
-    narrator "You are very angry at your friend but the video is online and so nothing else can be done."
+    show angry you
+    me "You delete the video right now !!"
+    hide angry you
 
-    narrator "Soon after a company contacts you with a very interesting offer to buy your program to make advertisement."
+    narrator "However it has been online so it is already too late and so nothing else can be done."
+
+    "Soon after..."
+
+    show enterprise
+    "Enterprise" "We are an advertisement company and we saw your deepfake video online and it is very impressive."
+    "Enterprise" "We can make you rich if you give us your code you used for it. Are you interrested ?"
 
     # I see that the player has much choice here x) I wonder what he/she could possibly choose..
     menu :
-        narrator "Do you accept the offer ?"
+        "Do you accept the offer ?"
         
         "Yes":
-            jump deepfake_offer_accepted
+            show you rich 
+            narrator "You are now rich !!"
 
-label deepfake_offer_accepted:
-    show you rich 
-    narrator "You are now rich !"
+        "No":
+            narrator "The enterprise then contacts your friends."
+            "Enterprise" "We saw your deepfake video online and it is very impressive. We were wondering if you could sell us the code for it ?"
+            "Enterprise" "You will be nicely paid !!"
+            "Your friends" "Sure, here it is !"
+
+            narrator "You friends are now rich and your code is gone without your censent."
+            "Too bad ..."
 
     show you dubious
     # maybe introduce the context of the election a bit more ? It is quite "roughly" introduced here.
     narrator "At the next election, you realise that something is off with one of the videos about the election." 
     
     show politician
-    "Politician" "We will make Switzerland great again by curing every homosexual person !"
+    "Politician" "We will make Switzerland great again by \"curing\" every homosexual person !"
 
     show you watching video
     narrator "You decide to rewatch the video and realise that it includes the [detail] that your algorithm creates."
