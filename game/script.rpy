@@ -69,20 +69,85 @@ label jail:
     narrator "Actually, you are right now working on a super machine learning model for a big swiss company."
     narrator "You are at home alone and somebody knocks on the door."
     officer "Hey there, open up!"
-    # me: choose to open the door or not (I'll do the choices later)
+
+    menu :
+        "Intrigued, I open the door":
+            jump jail_door 
+        "No, I am too scared to open":
+            jump jail_scared
+
+    
+label jail_scared:
+
+    narrator "The officer waits for 5 minutes outside your door. Do you open now ?"
+
+    menu :
+        "Well yes, why not, now I open the door":
+            jump jail_door 
+        "No thank you. I will wait for him to go away":
+            jump jail_nodoor
+
+label jail_nodoor:
+
+    narrator "He still doesn't go away so you finally decide to open up."
+    jump jail_door
+
+
+label jail_door:
+
     officer "I work for the Swiss justice system and we have heard that your computing skills are amazing."
     officer "Switzerland wants you to build a machine learning model to help judges decide if a prisoner can be let go earlier or not. Prisons are overfilled, you understand..."
     officer "Your task would be to predict if a prisoner will behave well or not after his or her release. So we can let people go without them making harm out there hehe."
     officer "Do you accept to take on this task ? You would be paid very well and the country will thank you !"
-    # me: choose to accept or not
-    # if accept:
+
+    menu :
+        "Yes, of course, let's do this ! It seems interesting and for the good cause.":
+            jump jail_yes
+        "No thank you, I sense a trap.":
+            jump jail_no
+
+label jail_no:
+
+    officer "Okay I understand. I will still send you an email with the dataset in case you change your mind. We really want you to do it."
+    narrator "The officer leaves and you are still thinking about it a few hours later."
+    narrator "In the end, you decide to give it a shot. After all, you can still decide later if you send them your model or not. It is still interesting to try, even in your free time."
+    jump jail_email
+
+label jail_yes: 
+
     officer "Great news ! You did the right choice, thank you !"
     officer "But be careful, we want a very accurate model ! Your country is counting on you. I'll send you the data later by mail. Bye then !"
     narrator "The officer leaves without giving you a chance to ask more questions."
-    narrator "You are still confused by this encounter and decide to make tea. You receive any email a few minutes later."
+    jump jail_email
+
+label jail_email:
+    narrator "You are still confused by this encounter and decide to make tea. You receive an email a few hours later."
     narrator "In the email, you get the dataset to train your model. It contains a lot of previous cases of prisoners and if they relapsed or not after being let go of jail."
-    narrator "You have a lot of information about the prisoners, including the color of their skin, their age, gender, ethnicity, country of birth, sexual orientation, religion, etc."
+    narrator "You have a lot of information about the prisoners, including their age, gender, ethnicity, country of birth, sexual orientation, religion, etc."
     narrator "Do you decide to include this information in the model or not ?"
+
+    menu :
+        "No I don't want to include any of that.":
+            jump jail_not_included
+
+
+label jail_not_included:
+    narrator "You work for days and finally made your model. It is impartial and unbiased since you didn't include all the biased information. Well done!"
+    narrator "You decide to give it to the officer since you are quite proud of your work and are confident that it will not bias a certain part of the population."
+    officer "Well, thank you for your model. However, your accuracy is only 77\%, that is not very good. We noticed that you omitted a lot of that data. We want you to include it."
+    officer "If you don't include it, we know some other people that could do that for us."
+
+    menu: 
+        "Okay, I decide to include it now to better the accuracy":
+            jump jail_include
+        "No, I don't want to do that":
+            jump jail_nope
+
+label jail_nope:
+    narrator "You stood on your principles. However, sadly, Switzerland didn't want your model because they thought it had a too low accuracy."
+    narrator "Your journey is now over. "
+
+
     # to see together if we can choose all or nothing, or by a case to case basis, to complete
 
 
