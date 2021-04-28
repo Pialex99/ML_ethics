@@ -4,6 +4,17 @@
 define narrator = Character("Narrator", color="#ffffff")
 define me = Character("Me", color="#c8c8ff")
 
+image me angry = im.FactorScale("Portraits/DF_Angry.png", 0.5)
+image me confused = im.FactorScale("Portraits/DF_Confused.png", 0.5)
+image me coy = im.FactorScale("Portraits/DF_Coy.png", 0.5)
+image me happy = im.FactorScale("Portraits/DF_Happy.png", 0.5)
+image me laugh = im.FactorScale("Portraits/DF_Laugh.png", 0.5)
+image me neutral = im.FactorScale("Portraits/DF_Neutral.png", 0.5)
+image me pouty = im.FactorScale("Portraits/DF_Pouty.png", 0.5)
+image me sad = im.FactorScale("Portraits/DF_Sad.png", 0.5)
+image me shocked
+image me shy = im.FactorScale("Portraits/DF_Shy.png", 0.5)
+
 # for the jail case
 define officer = Character("Swiss justice system officer")
 
@@ -115,6 +126,8 @@ label introduction:
 label jail:
 
     # context and first encounter
+    image house = im.FactorScale("Backgrounds/house a day.png", 0.7)
+    show house with fade
     narrator "You finally got your EPFL diploma and are now a computer scientist working freelance for companies. You are quite successful and get job offers all the time!"
     narrator "Actually, you are right now working on a super machine learning model for a big swiss company."
     narrator "You are at home alone and somebody knocks on the door."
@@ -122,6 +135,7 @@ label jail:
 
     menu :
         "Intrigued, I open the door":
+            $ tries = 0
             jump jail_door 
         "No, I am too scared to open":
             jump jail_scared
@@ -133,6 +147,7 @@ label jail_scared:
 
     menu :
         "Well yes, why not, now I open the door":
+            $ tries = 1
             jump jail_door 
         "No thank you. I will wait for him to go away":
             jump jail_nodoor
@@ -140,10 +155,20 @@ label jail_scared:
 label jail_nodoor:
 
     narrator "He still doesn't go away so you finally decide to open up."
+    $ tries = 2
     jump jail_door
 
 
 label jail_door:
+    image officer angry = im.FactorScale("Sprite Male Dark Hair/Sprite Male Dark Hair Ang01.png", 0.5)
+    image officer annoyed = im.FactorScale("Sprite Male Dark Hair/Sprite Male Dark Hair Ann01.png", 0.5)
+    image officer neural = im.FactorScale("Sprite Male Dark Hair/Sprite Male Dark Hair Neu01.png", 0.5)
+    if tries == 0:
+        show officer neural with fade 
+    elif tries == 1:
+        show officer annoyed with fade
+    else :
+        show officer angry with fade
 
     officer "Hello, I work for the Swiss justice system and we have heard that your computing skills are amazing."
     officer "Switzerland wants you to build a machine learning model to help judges decide if a prisoner can be let go earlier or not. Prisons are overfilled, you understand..."
@@ -157,25 +182,33 @@ label jail_door:
             jump jail_no
 
 label jail_no:
-
+    image officer evil = im.FactorScale("Sprite Male Dark Hair/Sprite Male Dark Hair Sly01.png", 0.5)
+    show officer evil
     officer "Okay I understand. I will still send you an email with the dataset in case you change your mind. We really want you to do it."
     narrator "The officer leaves and you are still thinking about it a few hours later."
     narrator "In the end, you decide to give it a shot. After all, you can still decide later if you send them your model or not. It is still interesting to try, even in your free time."
     jump jail_email
 
 label jail_yes: 
-
+    image officer happy = im.FactorScale("Sprite Male Dark Hair/Sprite Male Dark Hair Smi01.png", 0.5)
+    show officer happy
     officer "Great news ! You did the right choice, thank you !"
     officer "But be careful, we want a very accurate model ! Your country is counting on you. I'll send you the data later by mail. Bye then !"
     narrator "The officer leaves without giving you a chance to ask more questions."
     jump jail_email
 
 label jail_email:
+    hide officer with fade
+
+    image office = im.FactorScale("Background/personal room day.png", 0.7)
+    show office with fade
+    show me confused with fade
     narrator "You are still confused by this encounter and decide to make tea. You receive any email a few hours later."
     narrator "In the email, you get the dataset to train your model. It contains a lot of previous cases of prisoners and if they relapsed or not after being let go of jail."
     narrator "You have a lot of information about the prisoners, like the crime they committed, for how long they were in jail, and, of course, if they relapsed after being let go or not."
     narrator "However, you also have some other information including the prisoners' age, gender, ethnicity, country of birth, sexual orientation, religion, etc."
     narrator "Do you decide to include this information in the model or not ?"
+    show me neutral
 
     # maybe refine the choices later (give more options)
     menu :
@@ -186,13 +219,19 @@ label jail_email:
 
 label jail_include:
     narrator "You work for days and finally made your model. It reaches an amazing accuracy of 95\%. You decide to present it to the officer."
+    show officer happy with fade
     officer "Thank you for your model, it is amazing and very accurate. We will use it. Congratulations on behalf of your country."
+    show me happy with fade
     narrator "The officer leaves and you are feeling proud of your work."
 
+    image coffee = im.FactorScale("Background/cafe a day.png", 0.7)
+    show coffee with fade
     narrator "A few months later, you learn that an inmate friend you know might be released earlier." 
+    show me shocked
     narrator "However, the judge decides to keep him in jail. You are suprised because you know that the inmate would behave well if released."
     narrator "You try to understand why he's not released earlier. You give your friend's data to your model and play a bit with the input."
     narrator "At one point, you change your friend's skin color and discover that your model would have set him free !"
+    show me sad
     narrator "You feel guilty and have great remorse..."
 
     jump jail_concl
@@ -200,6 +239,7 @@ label jail_include:
 label jail_not_included:
     narrator "You work for days and finally made your model. It is impartial and unbiased since you didn't include all the biased information. Well done!"
     narrator "You decide to give it to the officer since you are quite proud of your work and are confident that it will not bias a certain part of the population."
+    show officer annoyed
     officer "Well, thank you for your model. However, your accuracy is only 77\%, that is not very good. We noticed that you omitted a lot of that data. We want you to include it."
     officer "If you don't include it, we know some other people that could do that for us."
 
@@ -210,13 +250,14 @@ label jail_not_included:
             jump jail_nope
 
 label jail_nope:
+    hide officer
     narrator "You stood on your principles. However, sadly, Switzerland didn't want your model because they thought it had a too low accuracy."
     narrator "Your journey is now over. Thank you for playing ! "
     jump jail_concl
 
 
 label jail_concl:
-
+    hide me
     narrator "This case hopefully showed you the dilemmas of including biased data in a machine learning model."
     narrator "To go even further, we can see how such a model could degenerate looking at the minority report movie."
 
@@ -226,6 +267,7 @@ label jail_concl:
     narrator "A great way to maintain peace or an unjust way of arresting people when they haven’t done anything yet ? "
     narrator "The answer is not easy and is yours to think about !"
 
+    hide house
     jump start 
 
 
@@ -323,7 +365,7 @@ label deepfake:
     show you watching video
     narrator "You decide to rewatch the video and realise that it includes the [detail] that your algorithm creates."
     
-    show you shocked
+    show me shocked
     me "No doubts are possible, the video has been created by my program !!!"
 
     # maybe add a small conclusion here on what we could get from the case ? (feedback is important ;) )
@@ -348,7 +390,7 @@ label translator:
     menu :
         "I take all the available dataset to have as much data as possible !":
             jump translator_all
-        "I will only take recent translations to be sure. ":
+        "I will only take recent translations to be sure.":
             jump translator_recent
 
 label translator_all:     
@@ -403,7 +445,7 @@ label translator_end:
 
     narrator "This case hopefully showed you how you should always be careful while selecting a dataset."
     narrator "Here, there is a trade-off between a good accuracy in translation (taking all the dataset) or unbiased data (only taking recent datasets)."
-    narrator "Indeed, the Hungarian language doesn't have pronouns in front of verbs and that is definitely something to consider in this task before jumping into it. "
+    narrator "Indeed, the Hungarian language doesn't have gendered pronouns in front of verbs and that is definitely something to consider in this task before jumping into it."
     narrator "Not knowing the Hungarian language, it is very hard to think about this fact beforehand, leading to a design flaw."
     narrator "Always try to think of potential biases that you could have in your model before starting a task !"
 
