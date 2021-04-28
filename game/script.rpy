@@ -70,7 +70,7 @@ label introduction:
     # about covid 
     narrator "Another very current example is oximetry of covid patients in the hospitals. When patients arrive at the emergency room because they can’t breath due to a covid infection, their blood oxygen level is measured with a little device called an oximeter."
     narrator "If their oxygen level is below a certain threshold, they are admitted and treated, otherwise they are sent home."
-    narrator "However, this little device works less well in black people and tends to send them home even if they are in the need of a treatment ! This discrimination can endanger their lives."
+    narrator "However, this little device works less well on black people and tends to send them home even if they are in the need of a treatment ! This discrimination can endanger their lives."
     narrator "These issues can be solved by carefully considering all the possible consequences during the design process and this is also true for machine learning algorithms."
     narrator "These indeed need to be carefully designed and the data carefully processed to avoid biases like the ones described previously."
     
