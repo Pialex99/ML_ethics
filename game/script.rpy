@@ -16,7 +16,6 @@ define friend3 = Character("Fourth ML enthousiastic friend")
 # for the google translate case
 define boss = Character("Your boss")
 
-
 label start:
 
 menu:
@@ -43,7 +42,8 @@ menu:
 # INTRODUCTION
         
 label introduction:
-
+    image ml = "machine-learning-in-healthcare.jpg"
+    show ml with fade
     # quick welcome
     narrator "Hello you, machine learning student !" 
     narrator "This game is here to make you aware of the ethical dilemmas that can arise from machine learning uses."
@@ -61,12 +61,22 @@ label introduction:
     narrator "In some cases, using the outputs goes even beyond the fear of losing a lot of money and can severely impact the lives of countless people, if not considered with caution."
     narrator "A very important thing to pay attention to is design flaws that could bias the model towards a certain part of the population. Indeed, if the model is trained on certain biased data, the results will also be biased."
     
+    hide ml
+
+    image chest x ray = im.FactorScale("Lung_X-ray.jpg", 0.3)
+
+    show chest x ray with fade
     # medical imaging
     narrator "For example, regarding medical imaging like X-rays, the training set consists mostly of caucasian males."
     narrator "If the patient that requires medical imaging is black or female, can you still trust the results ? Can a female chest X-ray scan be interpreted using a model trained on male chest X-ray scans ? We have to be careful here."
     
+    hide chest 
+
     # put a video here (racist soap dispenser or another in the same style more related to ML)
-    
+    $ renpy.movie_cutscene("video/Racist_Soap_Dispenser.webm")
+
+    image oximeter = im.FactorScale("oximeter.jpg", 0.5)
+    show oximeter with fade
     # about covid 
     narrator "Another very current example is oximetry of covid patients in the hospitals. When patients arrive at the emergency room because they can’t breath due to a covid infection, their blood oxygen level is measured with a little device called an oximeter."
     narrator "If their oxygen level is below a certain threshold, they are admitted and treated, otherwise they are sent home."
@@ -74,16 +84,28 @@ label introduction:
     narrator "These issues can be solved by carefully considering all the possible consequences during the design process and this is also true for machine learning algorithms."
     narrator "These indeed need to be carefully designed and the data carefully processed to avoid biases like the ones described previously."
     
+    hide oximeter
+
+    image uighur case = im.FactorScale("Uighur case.png", 0.5)
+    show uighur case with fade
+    
     # Uighur case
     narrator "Moreover, machine learning can even go further in ethical problems and create usages against human rights such as in the Uighurs case."
     narrator "Indeed, the Chinese police are using machine learning to track the Uighurs ethnicity with an algorithm that can determine with 97 percent accuracy if a person is part of the Uighur community or not based on facial recognition."
     narrator "This is used to set off alerts to the police if many Uighurs are seen together for example and in general to track and persecute this community."
     narrator "Even if the facial recognition model was perhaps created with the best of intentions, it is enough to create a democracy disaster if it falls in the wrong hands."
 
+    hide uighur case 
+
+    # Add loops exemple
+
+    show ml with fade
+
     narrator "Now, you should see better why machine learning should be used with caution and why thinking about ethics, and not only the scientific part, is crucial while designing models."
     narrator "Next, you will be put in the shoes of a machine learning scientist who encounters such problems and see how your reactions affect the consequences."
     narrator "Ready ? Let’s go, choose a case study !"
 
+    hide ml
 
     jump start
 
@@ -272,10 +294,9 @@ label deepfake:
     "Soon after..."
 
     show enterprise
-    "Enterprise" "We are an advertisement company and we saw your deepfake video online and it is very impressive."
-    "Enterprise" "We can make you rich if you give us your code you used for it. Are you interrested ?"
+    "The company" "We are an advertisement company and we saw your deepfake video online and it is very impressive."
+    "The company" "We can make you rich if you give us your code you used for it. Are you interrested ?"
 
-    # I see that the player has much choice here x) I wonder what he/she could possibly choose..
     menu :
         "Do you accept the offer ?"
         
@@ -284,9 +305,9 @@ label deepfake:
             narrator "You are now rich !!"
 
         "No":
-            narrator "The enterprise then contacts your friends."
-            "Enterprise" "We saw your deepfake video online and it is very impressive. We were wondering if you could sell us the code for it ?"
-            "Enterprise" "You will be nicely paid !!"
+            narrator "The company then contacts your friends."
+            "The company" "We saw your deepfake video online and it is very impressive. We were wondering if you could sell us the code for it ?"
+            "The company" "You will be nicely paid !!"
             "Your friends" "Sure, here it is !"
 
             narrator "You friends are now rich and your code is gone without your censent."
@@ -307,7 +328,7 @@ label deepfake:
 
     # maybe add a small conclusion here on what we could get from the case ? (feedback is important ;) )
     # for ex: to be careful how even a model made "for fun" can be missused...make the parallel with the Uighurs case ?
-    
+
     jump start
 
 

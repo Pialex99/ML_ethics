@@ -8,3 +8,4 @@ game/saves/
 *.rpyb
 *.save
 project.json
+.DS_Store
