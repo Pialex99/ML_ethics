@@ -30,6 +30,8 @@ image office = im.FactorScale("Backgrounds/personal room day.png", 0.7)
 image house = im.FactorScale("Backgrounds/house a day.png", 0.7)
 image coffee = im.FactorScale("Backgrounds/cafe a day.png", 0.7)
 
+image tweet = im.FactorScale("tweet.png", 0.4)
+
 label start:
 
 menu:
@@ -435,14 +437,20 @@ label deepfake:
 # TRANSLATION CASE STUDY
 
 label translator: 
+    show office with fade 
+    show me happy
     narrator "You finally got your EPFL diploma and are now a computer scientist working for a big translation company."
     narrator "You are in your office, enjoying a little break."
 
+    image boss sly = im.FactorScale("Sprite Male Dark Hair/Sprite Male Dark Hair Sly01.png", 0.5)
+    show me happy at left with move
+    show boss sly at right
     boss "Hey you, we were given a new task. Since I see that you are free at the moment and that you took Machine Learning in school, it will be for you !"
     boss "The task is to translate from Hungarian to English using a machine learning approach. No need to know Hungarian, don't worry !"
     boss "You just have to feed the Hungarian books already translated in English to a machine learning model to do it for you. I trust you, we only have one week to do so !"
     me "Hum, okay, I will do that boss ! I am on it."
-
+    hide boss 
+    show me happy at center with move
     narrator "You look up a bit the available translated literature on the web. What do you decide to use ?"
 
     menu :
@@ -454,15 +462,23 @@ label translator:
 label translator_all:     
     narrator "You take all the dataset you can get access to and make your model with it. It translates with a very good accuracy. Your hungarian friend confirms it. "
     narrator "You decide to give your model proudly to your boss, even a few days early. "
+    show me laugh at left with move
+    show boss sly at right
     me "There you go boss, as promised, your Hungarian-English translator based on machine learning. Even a few days early, ha ! "
     boss "Thank you, very good accuracy ! Keep up the good work. "
     narrator "You are all happy and move on to other tasks."
-    narrator "However, a few months later, you are browsing Twitter and suddenly you see a tweet on your feed. "
+    hide me
+    hide boss
+
 
     # add tweet here
     show tweet
+    narrator "However, a few months later, you are browsing Twitter and suddenly you see a tweet on your feed. "
+    hide tweet
 
+    show me sad
     narrator "You are shoked and a bit disappointed in yourself. You definitely did not see that coming. "
+
     narrator "If you got the chance to go back in time and only use recent datasets, would you do so ? "
 
     menu :
@@ -473,6 +489,7 @@ label translator_all:
 
 
 label translator_recent:
+    show me neutral
     narrator "You take only the recent dataset you can get access to (last 10 years) and make your model with it."
     narrator "However, you notice that the accuracy is not very good."
     narrator "Indeed, the dataset of recent translated Hungarian books to English is clearly not large enough for your needs. "
@@ -485,28 +502,36 @@ label translator_recent:
             jump translator_present
 
 label translator_present:
+    show me neutral at left with move 
+    image boss annoyed = im.FactorScale("Sprite Male Dark Hair/Sprite Male Dark Hair Ann01.png", 0.5)
+    show boss annoyed at right 
     me "There you go boss, your Hungarian-English translator based on machine learning. "
     boss "Thank you for your work, but the accuracy is not very good. I think our competitors will destroy us." 
+    show boss sly at right
     boss "Well still, let's present the model to our customer. Your job is now done !"
     narrator "You get no news from this project and move on to other tasks."
-
-    narrator "A few months later, you are browsing Twitter and suddenly you see a tweet on your feed. "
+    hide boss 
+    hide me 
 
     # add tweet here
     show tweet 
+    narrator "A few months later, you are browsing Twitter and suddenly you see a tweet on your feed. "
+    hide tweet
 
+    show me happy
     narrator "It looks like you did a good thing taking only the recent dataset ! Even if the price to pay is thus a less good accuracy..."
 
     jump translator_end
 
 label translator_end:
+    hide me
 
     narrator "This case hopefully showed you how you should always be careful while selecting a dataset."
     narrator "Here, there is a trade-off between a good accuracy in translation (taking all the dataset) or unbiased data (only taking recent datasets)."
     narrator "Indeed, the Hungarian language doesn't have gendered pronouns in front of verbs and that is definitely something to consider in this task before jumping into it."
     narrator "Not knowing the Hungarian language, it is very hard to think about this fact beforehand, leading to a design flaw."
     narrator "Always try to think of potential biases that you could have in your model before starting a task !"
-
+    hide office
     jump start  
 
 
