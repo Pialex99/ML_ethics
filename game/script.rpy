@@ -29,6 +29,7 @@ define boss = Character("Your boss")
 image office = im.FactorScale("Backgrounds/personal room day.png", 0.7)
 image house = im.FactorScale("Backgrounds/house a day.png", 0.7)
 image coffee = im.FactorScale("Backgrounds/cafe a day.png", 0.7)
+image school = im.FactorScale("Backgrounds/school hallway a evening.png", 0.7)
 
 image tweet = im.FactorScale("tweet.png", 0.4)
 
@@ -51,13 +52,18 @@ menu:
     "A few last words":
         jump end
 
+    #"Credits": do later in a fancy style
+        #jump credits
+
     "Quit":
         return
+
         
 
 # INTRODUCTION
         
 label introduction:
+
     image ml = "machine-learning-in-healthcare.jpg"
     show ml with fade
     # quick welcome
@@ -88,9 +94,6 @@ label introduction:
     
     hide chest 
 
-    # put a video here (racist soap dispenser or another in the same style more related to ML)
-    $ renpy.movie_cutscene("video/Racist_Soap_Dispenser.webm")
-
     image oximeter = im.FactorScale("oximeter.jpg", 0.5)
     show oximeter with fade
     # about covid 
@@ -100,6 +103,9 @@ label introduction:
     narrator "These issues can be solved by carefully considering all the possible consequences during the design process and this is also true for machine learning algorithms."
     narrator "These indeed need to be carefully designed and the data carefully processed to avoid biases like the ones described previously."
     
+    narrator "The next video shows such a design flaw that can occur if we don't think about the possible biases before designing something first."
+    $ renpy.movie_cutscene("video/Racist_Soap_Dispenser.webm")
+
     hide oximeter
 
     image uighur case = im.FactorScale("Uighur case.png", 0.5)
@@ -112,8 +118,6 @@ label introduction:
     narrator "Even if the facial recognition model was perhaps created with the best of intentions, it is enough to create a democracy disaster if it falls in the wrong hands."
 
     hide uighur case 
-
-    # Add loops exemple
 
     show ml with fade
 
@@ -130,7 +134,6 @@ label introduction:
 
 label jail:
 
-    # context and first encounter
     show house with fade
     narrator "You finally got your EPFL diploma and are now a computer scientist working freelance for companies. You are quite successful and get job offers all the time!"
     narrator "Actually, you are right now working on a super machine learning model for a big swiss company."
@@ -266,6 +269,14 @@ label jail_nope:
 label jail_concl:
     hide me
     narrator "This case hopefully showed you the dilemmas of including biased data in a machine learning model."
+
+    # feedback loops, did I say it correctly ?
+    narrator "We can also note that there is a big problem with the fact that if we make a decision to feed biased data to our model now, the model will output biased results."
+    narrator "And then, if these results are used as input in the same model later, it creates a feedback loop which can be very problematic to stop !"
+    narrator "For example in this case, if the model outputs results such that black people have a lesser chance of being released early, this newly-created data can be used as input to the model later on."
+    narrator "It then creates a snowball effect and black people will be even less released early as time goes on, due to the biased model itself."
+
+    # minority report
     narrator "To go even further, we can see how such a model could degenerate looking at the minority report movie."
 
     # include a short movie extract ?
@@ -333,14 +344,13 @@ label deepfake:
             show me coy
             menu :
                 narrator "You decide to automaticaly add a small detail. Which one do you want ?"
-                # maybe put something more "discret" instead ? like a spot on the forehead I don't know ?
-                "Add a ring on every fingers":
+                "Add a ring on everybody's finger":
                     $ detail = "rings"
 
                 "Add a hat on everybody's head":
                     $ detail = "hat"
                     
-                "Add a earring to everybody":
+                "Add an earring to everybody":
                     $ detail = "earring"
             hide me
             
@@ -354,18 +364,19 @@ label deepfake:
     show friend2 happy
 
     narrator "You and your friends regroup to watch the results. Most of your friends’ work are not really convincing but yours and one of your friends’ are both awesome and so you decide to vote on who should win..."
-    narrator "It is very close but you win the bet !!"
+    narrator "It is very close but you win the bet !"
 
-    # maybe put a Deep Fake video ? here or at the end somewhere ?
+    # maybe put a deep fake video ? here or at the end somewhere ?
+
     hide friend0
     hide friend1
     hide friend2
     image friend0 angry = im.FactorScale("Female Dark Hair/sprite female dark hair Ang01.png", 0.6)
     show friend0 angry
-    narrator "Your final opponent is mad at you and out of an angry outburst she puts your work online !!!"
+    narrator "Your final opponent is mad at you and out of an angry outburst she puts your work online !"
     hide friend0
     show me angry
-    me "You delete the video right now !!"
+    me "You delete the video right now !"
     hide me angry
 
     narrator "However it has been online so it is already too late and so nothing else can be done."
@@ -401,11 +412,11 @@ label deepfake:
             narrator "The company then contacts your friends."
 
             "The company" "We saw your deepfake video online and it is very impressive. We were wondering if you could sell us the code for it ?"
-            "The company" "You will be nicely paid !!"
+            "The company" "You will be nicely paid !"
             show friend0 happy at left
             friend0 "Sure, here it is !"
 
-            narrator "You friends are now rich and your code is gone without your censent."
+            narrator "You friends are now rich and your code is gone without your consent."
             "Too bad ..."
             hide company
             hide friend0
@@ -413,8 +424,8 @@ label deepfake:
 
     show office with fade
     show me neutral
-    # maybe introduce the context of the election a bit more ? It is quite "roughly" introduced here.
-    narrator "At the next election, you find online the video of a politician."
+
+    narrator "A few months later, during the election times, you find the video of a politician online."
     show me confused
     narrator "You realise that something is off with that video." 
     
@@ -425,10 +436,8 @@ label deepfake:
     show me shocked
     me "No doubts are possible, the video has been created by my program !!!"
 
-    # maybe add a small conclusion here on what we could get from the case ? (feedback is important ;) )
-    # for ex: to be careful how even a model made "for fun" can be misused...make the parallel with the Uighurs case ?
     hide me 
-    narrator "To conclude, this case shows that a model made \"for fun\" may be misused if it falls into the wrong hands"
+    narrator "This case is here to show how even a model made \"for fun\" may be misused if it falls into the wrong hands. Caution is always required."
 
     hide office
     jump start
@@ -470,8 +479,6 @@ label translator_all:
     hide me
     hide boss
 
-
-    # add tweet here
     show tweet
     narrator "However, a few months later, you are browsing Twitter and suddenly you see a tweet on your feed. "
     hide tweet
@@ -479,13 +486,16 @@ label translator_all:
     show me sad
     narrator "You are shoked and a bit disappointed in yourself. You definitely did not see that coming. "
 
-    narrator "If you got the chance to go back in time and only use recent datasets, would you do so ? "
+    jump translator_end
 
-    menu :
-        "Yes !":
-            jump translator_recent
-        "No, I keep my choice for a better performance.":
-            jump translator_end
+    # too complicated to put in place with the loops...
+
+    #narrator "If you got the chance to go back in time and only use recent datasets, would you do so ? "
+    #menu :
+        #"Yes !":
+            #jump translator_recent
+        #"No, I keep my choice for a better performance.":
+            #jump translator_end
 
 
 label translator_recent:
@@ -513,7 +523,6 @@ label translator_present:
     hide boss 
     hide me 
 
-    # add tweet here
     show tweet 
     narrator "A few months later, you are browsing Twitter and suddenly you see a tweet on your feed. "
     hide tweet
@@ -538,6 +547,10 @@ label translator_end:
 # CONCLUSIONS
 
 label end:
+
+    image ml = "machine-learning-in-healthcare.jpg"
+    show ml with fade
+
     # thank you for playing
     narrator "You made it to the end of the game ! Well done !"
     narrator "You are hopefully now more aware of how machine learning use can give rise to ethical issues."
@@ -545,23 +558,19 @@ label end:
     narrator "Thank you again for taking the time to learn about these very important issues, you rock !"
     narrator "If you want to learn more about it and satisfy your thrist of knowledge, you can look at the following resources:"
 
-    # maybe also conclude about the feedback loop as Martin Jaggi mentioned ? not sure if it's the right place to put it though
-
     jump resources
 
 label resources:
     # show further resources
 menu:
-    # the fancy way doesn't work sadly :-( (with the nose ;) )
-    # textbutton _("A moral experiment about automated cars developed by MIT !") action OpenURL("https://www.moralmachine.net/")
-    # textbutton _("The paperclip game about how an AI can get out of control when instructed with a simple goal !") action OpenURL("https://www.decisionproblem.com/paperclips/index2.html")
-    # textbutton _("A short quite funny video also about an AI getting out of control by Tom Scott !") action OpenURL("https://youtu.be/-JlxuQ7tPgQ")
 
-    "{a=https://www.moralmachine.net/} A moral experiment about automated cars developed by MIT ! {/a}":
-        jump start # needed to stay in the menu after clicking on the url
-    "{a=https://www.decisionproblem.com/paperclips/index2.html} The paperclip game about how an AI can get out of control when instructed with a simple goal !{/a}":    
+    "{a=https://www.moralmachine.net/} 1. A moral experiment about automated cars developed by MIT ! {/a}":
+        jump start # needed for it to work 
+    "{a=https://www.decisionproblem.com/paperclips/index2.html} 2. The paperclip game about how an AI can get out of control when instructed with a simple goal !{/a}":    
         jump start
-    "{a=https://youtu.be/-JlxuQ7tPgQ} A short quite funny video also about an AI getting out of control by Tom Scott !{/a}":
+    "{a=https://youtu.be/-JlxuQ7tPgQ} 3. A short quite funny video also about an AI getting out of control by Tom Scott !{/a}":
         jump start
     "I am okay thank you, bye !":
         jump start
+
+        hide ml
