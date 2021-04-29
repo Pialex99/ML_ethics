@@ -19,13 +19,16 @@ image me shy = im.FactorScale("Portraits/DF_Shy.png", 0.5)
 define officer = Character("Swiss justice system officer")
 
 # for the deepfake case
-define friend0 = Character("ML enthousiastic friend") # we can give them funnier names maybe ? like Gertrude and Cunégonde ? (kidding)
-define friend1 = Character("Another ML enthousiastic friend")
-define friend2 = Character("Still another ML enthousiastic friend")
-define friend3 = Character("Fourth ML enthousiastic friend")
+define friend0 = Character("Ester")
+define friend1 = Character("Alex")
+define friend2 = Character("Lea")
 
 # for the google translate case
 define boss = Character("Your boss")
+
+image office = im.FactorScale("Backgrounds/personal room day.png", 0.7)
+image house = im.FactorScale("Backgrounds/house a day.png", 0.7)
+image coffee = im.FactorScale("Backgrounds/cafe a day.png", 0.7)
 
 label start:
 
@@ -126,7 +129,6 @@ label introduction:
 label jail:
 
     # context and first encounter
-    image house = im.FactorScale("Backgrounds/house a day.png", 0.7)
     show house with fade
     narrator "You finally got your EPFL diploma and are now a computer scientist working freelance for companies. You are quite successful and get job offers all the time!"
     narrator "Actually, you are right now working on a super machine learning model for a big swiss company."
@@ -200,7 +202,6 @@ label jail_yes:
 label jail_email:
     hide officer
     hide house
-    image office = im.FactorScale("Backgrounds/personal room day.png", 0.7)
     show office with fade
     show me confused
     narrator "You are still confused by this encounter and decide to make tea. You receive any email a few hours later."
@@ -228,7 +229,6 @@ label jail_include:
     hide officer
 
     hide office
-    image coffee = im.FactorScale("Backgrounds/cafe a day.png", 0.7)
     show coffee with fade
     narrator "A few months later, you learn that an inmate friend you know might be released earlier." 
     show me shocked
@@ -268,7 +268,7 @@ label jail_concl:
 
     # include a short movie extract ?
 
-    narrator "In this movie, three humanoids called precogs are able to predict a crime before it happens and the police go on to arrest the people before they even commit the crime."
+    narrator "In this movie, three humans called precogs are able to predict a crime before it happens and the police go on to arrest the people before they even commit the crime."
     narrator "A great way to maintain peace or an unjust way of arresting people when they haven’t done anything yet ? "
     narrator "The answer is not easy and is yours to think about !"
 
@@ -282,17 +282,22 @@ label deepfake:
 
     image class_room = im.FactorScale("Backgrounds/classroom a day.png", 0.7)
     show class_room with fade
-    
-    show friends happy
 
     narrator "You are a student of the Machine Learning class at EPFL."
     narrator "One day after the class you meet with some of your friends who also take the class."
+
+    image friend0 happy = im.FactorScale("Female Dark Hair/sprite female dark hair Smi01.png", 0.6)
+    image friend1 happy = im.FactorScale("Jean/jean_happy.png", 0.6)
+    image friend2 happy = im.FactorScale("Coral/coral_happy.png", 0.6)
+    show friend0 happy at right
+    show friend1 happy at left 
+    show friend2 happy
 
     friend0 "Hey ! Since we are all interested in machine learning why don't we make a small competition together ?"
 
     friend1 "Yeah ! Great idea !"
     friend2 "We could compete with a game like chess or something like that ?"
-    friend3 "Or since the classes are prerecorded, we could train models to make deepfakes of the teachers, it could be fun !"
+    friend0 "Or since the classes are prerecorded, we could train models to make deepfakes of the teachers, it could be fun !"
 
     "All together" "Oh yes ! Great idea !"
 
@@ -302,17 +307,28 @@ label deepfake:
 
     friend0 "Cool, so it is settled. Let's meet in a few weeks to share our results."
 
+    hide friend0
+    hide friend1
+    hide friend2
+
+    hide class_room
+    show office with fade
+
+    show me neutral
     narrator "During the development, you wonder if you should make the generated videos indistinguishable from a true video."
 
     menu :
         "Yes, undisguisable":
+            show me happy
             narrator "You work very hard and the results are stunning ! Well done !"
+            show me angry
             narrator "Unfortunalty, even with all the energy you put in it, your program doesn't seems to want to generate perfect videos."
             narrator "With all the time you have invested in it, you have noticed that it allways include a ring on the right middle finger of everybody in the videos and you can't figure out why it does that."
             $ detail = "ring"
+            hide me
 
         "No, add a small detail to recognize the generated videos":
-
+            show me coy
             menu :
                 narrator "You decide to automaticaly add a small detail. Which one do you want ?"
                 # maybe put something more "discret" instead ? like a spot on the forehead I don't know ?
@@ -324,62 +340,95 @@ label deepfake:
                     
                 "Add a earring to everybody":
                     $ detail = "earring"
+            hide me
             
+    hide office
+    show class_room with fade
 
     narrator "A few weeks laters..."
+
+    show friend0 happy at right
+    show friend1 happy at left 
+    show friend2 happy
 
     narrator "You and your friends regroup to watch the results. Most of your friends’ work are not really convincing but yours and one of your friends’ are both awesome and so you decide to vote on who should win..."
     narrator "It is very close but you win the bet !!"
 
     # maybe put a Deep Fake video ? here or at the end somewhere ?
-
-    show mad friend
-    narrator "Your final opponent is mad at you and out of an angry outburst he/she puts your work online !!!"
-    
-    show angry you
+    hide friend0
+    hide friend1
+    hide friend2
+    image friend0 angry = im.FactorScale("Female Dark Hair/sprite female dark hair Ang01.png", 0.6)
+    show friend0 angry
+    narrator "Your final opponent is mad at you and out of an angry outburst she puts your work online !!!"
+    hide friend0
+    show me angry
     me "You delete the video right now !!"
-    hide angry you
+    hide me angry
 
     narrator "However it has been online so it is already too late and so nothing else can be done."
 
-    "Soon after..."
+    hide class_room
+    show house with fade
+    "A few weeks later at your home ..."
 
-    show enterprise
+    image company = im.FactorScale("Sprite Male Dark Hair/Sprite Male Dark Hair Sly01.png", 0.5)
+
+    show company
     "The company" "We are an advertisement company and we saw your deepfake video online and it is very impressive."
     "The company" "We can make you rich if you give us your code you used for it. Are you interrested ?"
 
+    hide company 
+    show me neutral 
     menu :
         "Do you accept the offer ?"
         
         "Yes":
-            show you rich 
+            show me laugh
             narrator "You are now rich !!"
+            hide me 
+            hide house
 
         "No":
+            hide me
+            hide house
+            show coffee with fade
+            show company at right
+            image friend0 neutral = im.FactorScale("Female Dark Hair/sprite female dark hair Neu01.png", 0.6)
+            show friend0 neutral at left
             narrator "The company then contacts your friends."
+
             "The company" "We saw your deepfake video online and it is very impressive. We were wondering if you could sell us the code for it ?"
             "The company" "You will be nicely paid !!"
-            "Your friends" "Sure, here it is !"
+            show friend0 happy at left
+            friend0 "Sure, here it is !"
 
             narrator "You friends are now rich and your code is gone without your censent."
             "Too bad ..."
+            hide company
+            hide friend0
+            hide coffee
 
-    show you dubious
+    show office with fade
+    show me neutral
     # maybe introduce the context of the election a bit more ? It is quite "roughly" introduced here.
-    narrator "At the next election, you realise that something is off with one of the videos about the election." 
+    narrator "At the next election, you find online the video of a politician."
+    show me confused
+    narrator "You realise that something is off with that video." 
     
-    show politician
     "Politician" "We will make Switzerland great again by \"curing\" every homosexual person !"
 
-    show you watching video
     narrator "You decide to rewatch the video and realise that it includes the [detail] that your algorithm creates."
     
     show me shocked
     me "No doubts are possible, the video has been created by my program !!!"
 
     # maybe add a small conclusion here on what we could get from the case ? (feedback is important ;) )
-    # for ex: to be careful how even a model made "for fun" can be missused...make the parallel with the Uighurs case ?
+    # for ex: to be careful how even a model made "for fun" can be misused...make the parallel with the Uighurs case ?
+    hide me 
+    narrator "To conclude, this case shows that a model made \"for fun\" may be misused if it falls into the wrong hands"
 
+    hide office
     jump start
 
 
