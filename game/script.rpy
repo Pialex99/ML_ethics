@@ -12,7 +12,7 @@ image me laugh = im.FactorScale("Portraits/DF_Laugh.png", 0.5)
 image me neutral = im.FactorScale("Portraits/DF_Neutral.png", 0.5)
 image me pouty = im.FactorScale("Portraits/DF_Pouty.png", 0.5)
 image me sad = im.FactorScale("Portraits/DF_Sad.png", 0.5)
-image me shocked
+image me shocked = im.FactorScale("Portraits/DF_Shock.png", 0.5)
 image me shy = im.FactorScale("Portraits/DF_Shy.png", 0.5)
 
 # for the jail case
@@ -198,11 +198,11 @@ label jail_yes:
     jump jail_email
 
 label jail_email:
-    hide officer with fade
-
-    image office = im.FactorScale("Background/personal room day.png", 0.7)
+    hide officer
+    hide house
+    image office = im.FactorScale("Backgrounds/personal room day.png", 0.7)
     show office with fade
-    show me confused with fade
+    show me confused
     narrator "You are still confused by this encounter and decide to make tea. You receive any email a few hours later."
     narrator "In the email, you get the dataset to train your model. It contains a lot of previous cases of prisoners and if they relapsed or not after being let go of jail."
     narrator "You have a lot of information about the prisoners, like the crime they committed, for how long they were in jail, and, of course, if they relapsed after being let go or not."
@@ -219,12 +219,16 @@ label jail_email:
 
 label jail_include:
     narrator "You work for days and finally made your model. It reaches an amazing accuracy of 95\%. You decide to present it to the officer."
-    show officer happy with fade
+    hide me
+    show officer happy at right 
     officer "Thank you for your model, it is amazing and very accurate. We will use it. Congratulations on behalf of your country."
-    show me happy with fade
+    show me happy at left 
     narrator "The officer leaves and you are feeling proud of your work."
+    hide me
+    hide officer
 
-    image coffee = im.FactorScale("Background/cafe a day.png", 0.7)
+    hide office
+    image coffee = im.FactorScale("Backgrounds/cafe a day.png", 0.7)
     show coffee with fade
     narrator "A few months later, you learn that an inmate friend you know might be released earlier." 
     show me shocked
@@ -239,6 +243,7 @@ label jail_include:
 label jail_not_included:
     narrator "You work for days and finally made your model. It is impartial and unbiased since you didn't include all the biased information. Well done!"
     narrator "You decide to give it to the officer since you are quite proud of your work and are confident that it will not bias a certain part of the population."
+    hide me
     show officer annoyed
     officer "Well, thank you for your model. However, your accuracy is only 77\%, that is not very good. We noticed that you omitted a lot of that data. We want you to include it."
     officer "If you don't include it, we know some other people that could do that for us."
@@ -267,7 +272,7 @@ label jail_concl:
     narrator "A great way to maintain peace or an unjust way of arresting people when they haven’t done anything yet ? "
     narrator "The answer is not easy and is yours to think about !"
 
-    hide house
+    hide coffee
     jump start 
 
 
@@ -275,9 +280,13 @@ label jail_concl:
 
 label deepfake:
 
+    image class_room = im.FactorScale("Backgrounds/classroom a day.png", 0.7)
+    show class_room with fade
+    
     show friends happy
 
-    # I would add a little introduction here, like the narrator saying "you are a student at EPFL who took the ml course, blablabla"
+    narrator "You are a student of the Machine Learning class at EPFL."
+    narrator "One day after the class you meet with some of your friends who also take the class."
 
     friend0 "Hey ! Since we are all interested in machine learning why don't we make a small competition together ?"
 
