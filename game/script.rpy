@@ -112,7 +112,7 @@ label introduction:
     show uighur case with fade
     
     # Uighur case
-    narrator "Moreover, machine learning can even go further in ethical problems and create usages against human rights such as in the Uighurs case."
+    narrator "Moreover, machine learning can even go further in ethical problems and create uses against human rights such as in the Uighurs case."
     narrator "Indeed, the Chinese police are using machine learning to track the Uighurs ethnicity with an algorithm that can determine with 97 percent accuracy if a person is part of the Uighur community or not based on facial recognition."
     narrator "This is used to set off alerts to the police if many Uighurs are seen together for example and in general to track and persecute this community."
     narrator "Even if the facial recognition model was perhaps created with the best of intentions, it is enough to create a democracy disaster if it falls in the wrong hands."
@@ -135,7 +135,7 @@ label introduction:
 label jail:
 
     show house with fade
-    narrator "You finally got your EPFL diploma and are now a computer scientist working freelance for companies. You are quite successful and get job offers all the time!"
+    narrator "You finally got your EPFL diploma and are now a computer scientist working freelance for companies. You are quite successful and get job offers all the time !"
     narrator "Actually, you are right now working on a super machine learning model for a big swiss company."
     narrator "You are at home alone and somebody knocks on the door."
     officer "Hey there, open up!"
@@ -179,7 +179,7 @@ label jail_door:
 
     officer "Hello, I work for the Swiss justice system and we have heard that your computing skills are amazing."
     officer "Switzerland wants you to build a machine learning model to help judges decide if a prisoner can be let go earlier or not. Prisons are overfilled, you understand..."
-    officer "Your task would be to predict if a prisoner will behave well or not after his or her release. So we can let people go without them making harm out there hehe."
+    officer "Your task would be to predict if a prisoner will behave well or not after his or her erly release. So we can let people go without them making harm out there hehe."
     officer "Do you accept to take on this task ? You would be paid very well and the country will thank you !"
 
     menu :
@@ -211,7 +211,7 @@ label jail_email:
     show me confused
     narrator "You are still confused by this encounter and decide to make tea. You receive any email a few hours later."
     narrator "In the email, you get the dataset to train your model. It contains a lot of previous cases of prisoners and if they relapsed or not after being let go of jail."
-    narrator "You have a lot of information about the prisoners, like the crime they committed, for how long they were in jail, and, of course, if they relapsed after being let go or not."
+    narrator "You have a lot of information about the prisoners, like the crime they committed, how long they were in jail for, and, of course, if they relapsed after being let go or not."
     narrator "However, you also have some other information including the prisoners' age, gender, ethnicity, country of birth, sexual orientation, religion, etc."
     narrator "Do you decide to include this information in the model or not ?"
     show me neutral
@@ -220,7 +220,7 @@ label jail_email:
     menu :
         "Yes, I want to include all this information":
             jump jail_include 
-        "No I don't want to include any of that":
+        "No, I don't want to include any of that":
             jump jail_not_included
 
 label jail_include:
@@ -297,7 +297,7 @@ label deepfake:
     show class_room with fade
 
     narrator "You are a student of the Machine Learning class at EPFL."
-    narrator "One day after the class you meet with some of your friends who also take the class."
+    narrator "One day after the class, you meet with some of your friends who also take the class."
 
     image friend0 happy = im.FactorScale("Female Dark Hair/sprite female dark hair Smi01.png", 0.6)
     image friend1 happy = im.FactorScale("Jean/jean_happy.png", 0.6)
@@ -310,7 +310,7 @@ label deepfake:
 
     friend1 "Yeah ! Great idea !"
     friend2 "We could compete with a game like chess or something like that ?"
-    friend0 "Or since the classes are prerecorded, we could train models to make deepfakes of the teachers, it could be fun !"
+    friend0 "Or since the classes are prerecorded, we could train models to make deepfake videos of the teachers, it could be fun !"
 
     "All together" "Oh yes ! Great idea !"
 
@@ -331,19 +331,19 @@ label deepfake:
     narrator "During the development, you wonder if you should make the generated videos indistinguishable from a true video."
 
     menu :
-        "Yes, undisguisable":
+        "Yes, indistinguishable":
             show me happy
             narrator "You work very hard and the results are stunning ! Well done !"
             show me angry
-            narrator "Unfortunalty, even with all the energy you put in it, your program doesn't seems to want to generate perfect videos."
-            narrator "With all the time you have invested in it, you have noticed that it allways include a ring on the right middle finger of everybody in the videos and you can't figure out why it does that."
+            narrator "Unfortunately, even with all the energy you put in it, your program doesn't seem to want to generate perfect videos."
+            narrator "With all the time you have invested in it, you have noticed that it always includes a ring on the right middle finger of everybody in the videos and you can't figure out why it does that."
             $ detail = "ring"
             hide me
 
         "No, add a small detail to recognize the generated videos":
             show me coy
             menu :
-                narrator "You decide to automaticaly add a small detail. Which one do you want ?"
+                narrator "You decide to automatically add a small detail. Which one do you want ?"
                 "Add a ring on everybody's finger":
                     $ detail = "rings"
 
@@ -357,13 +357,13 @@ label deepfake:
     hide office
     show class_room with fade
 
-    narrator "A few weeks laters..."
+    narrator "A few weeks later..."
 
     show friend0 happy at right
     show friend1 happy at left 
     show friend2 happy
 
-    narrator "You and your friends regroup to watch the results. Most of your friends’ work are not really convincing but yours and one of your friends’ are both awesome and so you decide to vote on who should win..."
+    narrator "You and your friends get together to watch the results. Most of your friends’ work is not really convincing but yours and one of your friends’ is both awesome and so you decide to vote on who should win..."
     narrator "It is very close but you win the bet !"
 
     # maybe put a deep fake video ? here or at the end somewhere ?
@@ -379,7 +379,7 @@ label deepfake:
     me "You delete the video right now !"
     hide me angry
 
-    narrator "However it has been online so it is already too late and so nothing else can be done."
+    narrator "However it has been put online so it is already too late. Nothing else can be done."
 
     hide class_room
     show house with fade
@@ -389,7 +389,7 @@ label deepfake:
 
     show company
     "The company" "We are an advertisement company and we saw your deepfake video online and it is very impressive."
-    "The company" "We can make you rich if you give us your code you used for it. Are you interrested ?"
+    "The company" "We can make you rich if you give us your code you used for it. Are you interested ?"
 
     hide company 
     show me neutral 
@@ -434,7 +434,7 @@ label deepfake:
     narrator "You decide to rewatch the video and realise that it includes the [detail] that your algorithm creates."
     
     show me shocked
-    me "No doubts are possible, the video has been created by my program !!!"
+    me "No doubt possible, the video has been created by my program !"
 
     hide me 
     narrator "This case is here to show how even a model made \"for fun\" may be misused if it falls into the wrong hands. Caution is always required."
