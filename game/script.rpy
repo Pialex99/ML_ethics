@@ -179,7 +179,7 @@ label jail_door:
 
     officer "Hello, I work for the Swiss justice system and we have heard that your computing skills are amazing."
     officer "Switzerland wants you to build a machine learning model to help judges decide if a prisoner can be let go earlier or not. Prisons are overfilled, you understand..."
-    officer "Your task would be to predict if a prisoner will behave well or not after his or her erly release. So we can let people go without them making harm out there hehe."
+    officer "Your task would be to predict if a prisoner will behave well or not after his or her early release. So we can let people go without them making harm out there hehe."
     officer "Do you accept to take on this task ? You would be paid very well and the country will thank you !"
 
     menu :
