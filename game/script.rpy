@@ -16,7 +16,7 @@ image me shocked = im.FactorScale("Portraits/DF_Shock.png", 0.5)
 image me shy = im.FactorScale("Portraits/DF_Shy.png", 0.5)
 
 # for the jail case
-define officer = Character("Swiss justice system officer")
+define officer = Character("Swiss penal facility representative")
 
 # for the deepfake case
 define friend0 = Character("Ester")
@@ -67,27 +67,33 @@ label introduction:
     image ml = "machine-learning-in-healthcare.jpg"
     show ml with fade
     # quick welcome
-    narrator "Hello you, machine learning student !" 
+    narrator "Hello, you, machine learning student !" 
     narrator "This game is here to make you aware of the ethical dilemmas that can arise from machine learning uses."
     narrator "It is very important to be aware of them early in your machine learning journey and we thank you for choosing to play this game, you rock !"
-    narrator "The game will consist in a short introduction to why it is important to learn about machine learning ethics and the consequences of not paying attention to it."
-    narrator "Later, you will impersonate a machine learning scientist confronted with some ethical dilemmas and you will make a series of choices regarding each situation to explore their consequences. Let’s start !"
+    narrator "The game will consist in a short introduction to why it is important to learn about machine learning ethics and the consequences of not paying attention to them."
+    narrator "Later, you will impersonate a machine learning scientist confronted with some ethical dilemmas and you will make a series of choices regarding each situation to explore their consequences."
     
     # introduction start
+    # I put another image here to emphasize the change
+    hide ml
+    image prog = "prog_img.jpg"
+    show prog with fade
+
     narrator "As you have learned during these first few weeks of lecture, machine learning is a very powerful tool to give predictions from some data given to the algorithm, or to explain the relationship between the input data and the response variable(s)."
     narrator "It is used in more and more areas of life and helps a lot of people !"
 
     # black box
-    narrator "However, the algorithm stays a black box and it is hard to trust it for important decisions, since its outputs are given without any explanations. Indeed, an ML algorithm doesn’t explain its reasoning !"
+    narrator "However, the algorithm stays a black box and it is hard to trust it for important decisions, since its outputs are given without any explanations. Indeed, a machine learning algorithm doesn’t explain its reasoning !"
     narrator "For instance, should you invest a million swiss francs in a particular firm blindfolded only because an algorithm told you so ?"
     narrator "In some cases, using the outputs goes even beyond the fear of losing a lot of money and can severely impact the lives of countless people, if not considered with caution."
     narrator "A very important thing to pay attention to is design flaws that could bias the model towards a certain part of the population. Indeed, if the model is trained on certain biased data, the results will also be biased."
     
-    hide ml
+    hide prog
 
     image chest x ray = im.FactorScale("Lung_X-ray.jpg", 0.3)
 
     show chest x ray with fade
+
     # medical imaging
     narrator "For example, regarding medical imaging like X-rays, the training set consists mostly of caucasian males."
     narrator "If the patient that requires medical imaging is black or female, can you still trust the results ? Can a female chest X-ray scan be interpreted using a model trained on male chest X-ray scans ? We have to be careful here."
@@ -96,12 +102,13 @@ label introduction:
 
     image oximeter = im.FactorScale("oximeter.jpg", 0.5)
     show oximeter with fade
+
     # about covid 
     narrator "Another very current example is oximetry of covid patients in the hospitals. When patients arrive at the emergency room because they can’t breath due to a covid infection, their blood oxygen level is measured with a little device called an oximeter."
     narrator "If their oxygen level is below a certain threshold, they are admitted and treated, otherwise they are sent home."
-    narrator "However, this little device works less well on black people and tends to send them home even if they are in the need of a treatment ! This discrimination can endanger their lives."
+    narrator "However, this little device works not as well on black people and tends to send them home even if they are in need of a treatment ! This discrimination can endanger their lives."
     narrator "These issues can be solved by carefully considering all the possible consequences during the design process and this is also true for machine learning algorithms."
-    narrator "These indeed need to be carefully designed and the data carefully processed to avoid biases like the ones described previously."
+    narrator "Indeed, those need to be carefully designed and the data carefully processed to avoid biases like the ones described previously."
     
     narrator "The next video shows such a design flaw that can occur if we don't think about the possible biases before designing something first."
     $ renpy.movie_cutscene("video/Racist_Soap_Dispenser.webm")
@@ -112,10 +119,10 @@ label introduction:
     show uighur case with fade
     
     # Uighur case
-    narrator "Moreover, machine learning can even go further in ethical problems and create uses against human rights such as in the Uighurs case."
+    narrator "But Machine learning can even go further in ethical problems and can be used to violate human rights such as in the Uighurs case !"
     narrator "Indeed, the Chinese police are using machine learning to track the Uighurs ethnicity with an algorithm that can determine with 97 percent accuracy if a person is part of the Uighur community or not based on facial recognition."
     narrator "This is used to set off alerts to the police if many Uighurs are seen together for example and in general to track and persecute this community."
-    narrator "Even if the facial recognition model was perhaps created with the best of intentions, it is enough to create a democracy disaster if it falls in the wrong hands."
+    narrator "Even if the facial recognition model was perhaps created with the best of intentions, it is enough to create a social disaster if it falls in the wrong hands."
 
     hide uighur case 
 
@@ -179,7 +186,7 @@ label jail_door:
 
     officer "Hello, I work for the Swiss justice system and we have heard that your computing skills are amazing."
     officer "Switzerland wants you to build a machine learning model to help judges decide if a prisoner can be let go earlier or not. Prisons are overfilled, you understand..."
-    officer "Your task would be to predict if a prisoner will behave well or not after his or her early release. So we can let people go without them making harm out there hehe."
+    officer "Your task would be to predict if a prisoner will behave well or not after his or her early release. This way, we can let people go without them making harm out there."
     officer "Do you accept to take on this task ? You would be paid very well and the country will thank you !"
 
     menu :
@@ -209,7 +216,7 @@ label jail_email:
     hide house
     show office with fade
     show me confused
-    narrator "You are still confused by this encounter and decide to make tea. You receive any email a few hours later."
+    narrator "You are still confused by this encounter and decide to make tea. You receive an email a few hours later."
     narrator "In the email, you get the dataset to train your model. It contains a lot of previous cases of prisoners and if they relapsed or not after being let go of jail."
     narrator "You have a lot of information about the prisoners, like the crime they committed, how long they were in jail for, and, of course, if they relapsed after being let go or not."
     narrator "However, you also have some other information including the prisoners' age, gender, ethnicity, country of birth, sexual orientation, religion, etc."
@@ -261,16 +268,26 @@ label jail_not_included:
 
 label jail_nope:
     hide officer
-    narrator "You stood on your principles. However, sadly, Switzerland didn't want your model because they thought it had a too low accuracy."
-    narrator "Your journey is now over. Thank you for playing ! "
+    narrator "You stood on your principles and didn't include biased data in your model, well done ! "
+    narrator "However, sadly, Switzerland didn't want your model because they thought it had too low accuracy..."
+    narrator "You are a bit disappointed but decide to move on to other projects."
+    narrator "Indeed, you know that feeding biased input to the model could create problems."
+    narrator "For example, two inmates identical in every way apart from the skin color could have a different treatment based on this sole factor."
     jump jail_concl
 
 
 label jail_concl:
     hide me
+    hide coffee
+    hide office
+
+    # I included a picture of a jail to show it's the conclusion
+    image jail_image = "jail.jpg"
+    show jail_image with fade
+
     narrator "This case hopefully showed you the dilemmas of including biased data in a machine learning model."
 
-    # feedback loops, did I say it correctly ?
+    # feedback loops
     narrator "We can also note that there is a big problem with the fact that if we make a decision to feed biased data to our model now, the model will output biased results."
     narrator "And then, if these results are used as input in the same model later, it creates a feedback loop which can be very problematic to stop !"
     narrator "For example in this case, if the model outputs results such that black people have a lesser chance of being released early, this newly-created data can be used as input to the model later on."
@@ -279,13 +296,13 @@ label jail_concl:
     # minority report
     narrator "To go even further, we can see how such a model could degenerate looking at the minority report movie."
 
-    # include a short movie extract ?
+    # TO DO: include a short movie extract ?
 
     narrator "In this movie, three humans called precogs are able to predict a crime before it happens and the police go on to arrest the people before they even commit the crime."
     narrator "A great way to maintain peace or an unjust way of arresting people when they haven’t done anything yet ? "
     narrator "The answer is not easy and is yours to think about !"
 
-    hide coffee
+    hide jail_image
     jump start 
 
 
@@ -366,7 +383,7 @@ label deepfake:
     narrator "You and your friends get together to watch the results. Most of your friends’ work is not really convincing but yours and one of your friends’ is both awesome and so you decide to vote on who should win..."
     narrator "It is very close but you win the bet !"
 
-    # maybe put a deep fake video ? here or at the end somewhere ?
+    # TO DO: maybe put a deep fake video ? here or at the end somewhere ?
 
     hide friend0
     hide friend1
@@ -437,6 +454,7 @@ label deepfake:
     me "No doubt possible, the video has been created by my program !"
 
     hide me 
+
     narrator "This case is here to show how even a model made \"for fun\" may be misused if it falls into the wrong hands. Caution is always required."
 
     hide office
@@ -474,13 +492,13 @@ label translator_all:
     show me laugh at left with move
     show boss sly at right
     me "There you go boss, as promised, your Hungarian-English translator based on machine learning. Even a few days early, ha ! "
-    boss "Thank you, very good accuracy ! Keep up the good work. "
-    narrator "You are all happy and move on to other tasks."
+    boss "Thank you, it has a very good accuracy ! Keep up the good work. "
+    narrator "You are happy and move on to other tasks."
     hide me
     hide boss
 
     show tweet
-    narrator "However, a few months later, you are browsing Twitter and suddenly you see a tweet on your feed. "
+    narrator "However, a few months later, you are browsing Twitter and suddenly you see a tweet on your feed that seems to be talking about your work ! "
     hide tweet
 
     show me sad
@@ -528,19 +546,27 @@ label translator_present:
     hide tweet
 
     show me happy
-    narrator "It looks like you did a good thing taking only the recent dataset ! Even if the price to pay is thus a less good accuracy..."
+    narrator "Another competitor company must have chosen to take all the available dataset and is now paying the price on social media !"
+    narrator "It looks like you did a good thing taking only the recent translations ! Even if the price to pay is thus a less good accuracy..."
 
     jump translator_end
 
+
 label translator_end:
     hide me
+    hide office
+
+    # I included a different picture to show it's the conclusions
+    image translation_image = "translation.jpg"
+    show translation_image with fade
 
     narrator "This case hopefully showed you how you should always be careful while selecting a dataset."
     narrator "Here, there is a trade-off between a good accuracy in translation (taking all the dataset) or unbiased data (only taking recent datasets)."
     narrator "Indeed, the Hungarian language doesn't have gendered pronouns in front of verbs and that is definitely something to consider in this task before jumping into it."
     narrator "Not knowing the Hungarian language, it is very hard to think about this fact beforehand, leading to a design flaw."
     narrator "Always try to think of potential biases that you could have in your model before starting a task !"
-    hide office
+
+    hide translation_image
     jump start  
 
 
@@ -556,12 +582,13 @@ label end:
     narrator "You are hopefully now more aware of how machine learning use can give rise to ethical issues."
     narrator "It is very important to keep these issues in mind while working with machine learning and not only focus on the technical side."
     narrator "Thank you again for taking the time to learn about these very important issues, you rock !"
-    narrator "If you want to learn more about it and satisfy your thrist of knowledge, you can look at the following resources:"
+    narrator "If you want to learn more about it and satisfy your thirst of knowledge, you can look at the following resources:"
 
     jump resources
 
 label resources:
     # show further resources
+    hide ml
 menu:
 
     "{a=https://www.moralmachine.net/} 1. A moral experiment about automated cars developed by MIT ! {/a}":
