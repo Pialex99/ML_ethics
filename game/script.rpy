@@ -36,8 +36,8 @@ image tweet = im.FactorScale("tweet.png", 0.4)
 label start:
     # $ gui.textbox_yalign = 1.0
     # $ gui.rebuild()
-    $ gui.SetPreference("textbox_yalign", 1.0)
-    $ gui.rebuild()
+    # $ gui.SetPreference("textbox_yalign", 1.0)
+    # $ gui.rebuild()
 menu:
 
     "Short introduction":
@@ -68,8 +68,8 @@ menu:
 label introduction:
     # $ gui.textbox_yalign = 0.5
     # $ gui.rebuild()
-    $ gui.SetPreference("textbox_yalign", 0.5)
-    $ gui.rebuild()
+    # $ gui.SetPreference("textbox_yalign", 0.5)
+    # $ gui.rebuild()
     image ml = "machine-learning-in-healthcare.jpg"
     show ml with fade
     # quick welcome
