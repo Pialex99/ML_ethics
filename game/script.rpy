@@ -26,6 +26,8 @@ define friend2 = Character("Lea")
 # for the google translate case
 define boss = Character("Your boss")
 
+define audio.background_music = "music/music.mp3"
+
 image office = im.FactorScale("Backgrounds/personal room day.png", 0.7)
 image house = im.FactorScale("Backgrounds/house a day.png", 0.7)
 image coffee = im.FactorScale("Backgrounds/cafe a day.png", 0.7)
@@ -34,6 +36,7 @@ image school = im.FactorScale("Backgrounds/school hallway a evening.png", 0.7)
 image tweet = im.FactorScale("tweet.png", 0.4)
 
 label start:
+    play music background_music loop
     # $ gui.textbox_yalign = 1.0
     # $ gui.rebuild()
     # $ gui.SetPreference("textbox_yalign", 1.0)
