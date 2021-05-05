@@ -34,7 +34,10 @@ image school = im.FactorScale("Backgrounds/school hallway a evening.png", 0.7)
 image tweet = im.FactorScale("tweet.png", 0.4)
 
 label start:
-
+    # $ gui.textbox_yalign = 1.0
+    # $ gui.rebuild()
+    $ gui.SetPreference("textbox_yalign", 1.0)
+    $ gui.rebuild()
 menu:
 
     "Short introduction":
@@ -63,7 +66,10 @@ menu:
 # INTRODUCTION
         
 label introduction:
-
+    # $ gui.textbox_yalign = 0.5
+    # $ gui.rebuild()
+    $ gui.SetPreference("textbox_yalign", 0.5)
+    $ gui.rebuild()
     image ml = "machine-learning-in-healthcare.jpg"
     show ml with fade
     # quick welcome
@@ -140,7 +146,6 @@ label introduction:
 # JAILBIRD CASE STUDY 
 
 label jail:
-
     show house with fade
     narrator "You finally got your EPFL diploma and are now a computer scientist working freelance for companies. You are quite successful and get job offers all the time !"
     narrator "Actually, you are right now working on a super machine learning model for a big swiss company."
@@ -319,27 +324,39 @@ label deepfake:
     image friend0 happy = im.FactorScale("Female Dark Hair/sprite female dark hair Smi01.png", 0.6)
     image friend1 happy = im.FactorScale("Jean/jean_happy.png", 0.6)
     image friend2 happy = im.FactorScale("Coral/coral_happy.png", 0.6)
-    show friend0 happy at right
-    show friend1 happy at left 
-    show friend2 happy
 
+    show friend0 happy
     friend0 "Hey ! Since we are all interested in machine learning why don't we make a small competition together ?"
-
+    hide friend0
+    show friend1 happy 
     friend1 "Yeah ! Great idea !"
+    hide friend1
+    show friend2 happy
     friend2 "We could compete with a game like chess or something like that ?"
+    hide friend2
+    show friend0 happy 
     friend0 "Or since the classes are prerecorded, we could train models to make deepfake videos of the teachers, it could be fun !"
 
+    show friend1 happy at left 
+    show friend2 happy at right
     "All together" "Oh yes ! Great idea !"
-
-    me "Sure but we have to agree that we will keep the resulting videos between us, ok ?"
-
-    "Everybody" "Yeah sure"
-
-    friend0 "Cool, so it is settled. Let's meet in a few weeks to share our results."
-
     hide friend0
     hide friend1
     hide friend2
+
+    show me happy
+    me "Sure but we have to agree that we will keep the resulting videos between us, ok ?"
+    hide me 
+    show friend0 happy at right
+    show friend1 happy
+    show friend2 happy at left
+    "Everybody" "Yeah sure"
+
+    hide friend1
+    hide friend2
+    show friend0 happy at center with move 
+    friend0 "Cool, so it is settled. Let's meet in a few weeks to share our results."
+    hide friend0
 
     hide class_room
     show office with fade
@@ -380,15 +397,20 @@ label deepfake:
     show friend1 happy at left 
     show friend2 happy
 
-    narrator "You and your friends get together to watch the results. Most of your friends’ work is not really convincing but yours and one of your friends’ is both awesome and so you decide to vote on who should win..."
+    narrator "You and your friends get together to watch the results."
+    narrator "Most of your friends’ work is not really convincing but yours and one of your friends’ is both awesome !" 
+    narrator "You decide to vote on who should win..."
+    hide friend0
+    hide friend1
+    hide friend2
+
+    show me laugh 
     narrator "It is very close but you win the bet !"
 
     # TO DO: maybe put a deep fake video ? here or at the end somewhere ?
 
-    hide friend0
-    hide friend1
-    hide friend2
     image friend0 angry = im.FactorScale("Female Dark Hair/sprite female dark hair Ang01.png", 0.6)
+    hide me
     show friend0 angry
     narrator "Your final opponent is mad at you and out of an angry outburst she puts your work online !"
     hide friend0
@@ -454,10 +476,11 @@ label deepfake:
     me "No doubt possible, the video has been created by my program !"
 
     hide me 
-
-    narrator "This case is here to show how even a model made \"for fun\" may be misused if it falls into the wrong hands. Caution is always required."
-
     hide office
+
+    show ml
+    narrator "This case is here to show how even a model made \"for fun\" may be misused if it falls into the wrong hands. Caution is always required."
+    hide ml
     jump start
 
 
@@ -556,7 +579,7 @@ label translator_end:
     hide me
     hide office
 
-    # I included a different picture to show it's the conclusions
+    # I included a different picture to show it's the conclusions. Nice ! 
     image translation_image = "translation.jpg"
     show translation_image with fade
 
