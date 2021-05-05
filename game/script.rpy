@@ -79,7 +79,7 @@ label introduction:
     image prog = "prog_img.jpg"
     show prog with fade
 
-    narrator "As you have learned during these first few weeks of lecture, machine learning is a very powerful tool to give predictions from some data given to the algorithm, or to explain the relationship between the input data and the response variable(s)."
+    narrator "As you have learned during these first few weeks of lecture, machine learning is a very powerful tool to give predictions based on some data, or to explain the relationship between the input data and the response variable(s)."
     narrator "It is used in more and more areas of life and helps a lot of people !"
 
     # black box
@@ -582,22 +582,25 @@ label end:
     narrator "You are hopefully now more aware of how machine learning use can give rise to ethical issues."
     narrator "It is very important to keep these issues in mind while working with machine learning and not only focus on the technical side."
     narrator "Thank you again for taking the time to learn about these very important issues, you rock !"
-    narrator "If you want to learn more about it and satisfy your thirst of knowledge, you can look at the following resources:"
 
     jump resources
 
 label resources:
-    # show further resources
-    hide ml
 menu:
 
-    "{a=https://www.moralmachine.net/} 1. A moral experiment about automated cars developed by MIT ! {/a}":
-        jump start # needed for it to work 
-    "{a=https://www.decisionproblem.com/paperclips/index2.html} 2. The paperclip game about how an AI can get out of control when instructed with a simple goal !{/a}":    
-        jump start
-    "{a=https://youtu.be/-JlxuQ7tPgQ} 3. A short quite funny video also about an AI getting out of control by Tom Scott !{/a}":
-        jump start
+    narrator "If you want to learn more about it and satisfy your thirst of knowledge, you can look at the following resources:"
+
+    "1. A moral experiment about automated cars developed by MIT !":
+        # $ webbrowser.open_new(self.url)
+        $ OpenURL("https://www.moralmachine.net/")()
+        jump resources
+    "2. The paperclip game about how an AI can get out of control when instructed with a simple goal !":
+        $ OpenURL("https://www.decisionproblem.com/paperclips/index2.html")()
+        jump resources
+    "3. A short quite funny video also about an AI getting out of control by Tom Scott !":
+        $ OpenURL("https://youtu.be/-JlxuQ7tPgQ")()
+        jump resources
     "I am okay thank you, bye !":
+        hide ml
         jump start
 
-        hide ml
