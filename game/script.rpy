@@ -26,6 +26,8 @@ define friend2 = Character("Lea")
 # for the google translate case
 define boss = Character("Your boss")
 
+define audio.background_music = "music/music.mp3"
+
 image office = im.FactorScale("Backgrounds/personal room day.png", 0.7)
 image house = im.FactorScale("Backgrounds/house a day.png", 0.7)
 image coffee = im.FactorScale("Backgrounds/cafe a day.png", 0.7)
@@ -39,6 +41,8 @@ label start:
     # $ gui.rebuild()
     # $ gui.SetPreference("textbox_yalign", 1.0)
     # $ gui.rebuild()
+    play music background_music loop
+
 menu:
 
     "Short introduction":
@@ -176,13 +180,11 @@ label jail_nodoor:
 
 
 label jail_door:
-    image officer angry = im.FactorScale("Sprite Male Dark Hair/Sprite Male Dark Hair Ang01.png", 0.5)
-    image officer annoyed = im.FactorScale("Sprite Male Dark Hair/Sprite Male Dark Hair Ann01.png", 0.5)
-    image officer neural = im.FactorScale("Sprite Male Dark Hair/Sprite Male Dark Hair Neu01.png", 0.5)
+    image officer angry = im.FactorScale("Lisette/L3_Angry.png", 0.5)
+    image officer neutral = im.FactorScale("Lisette/L3_Neutral.png", 0.5)
+
     if tries == 0:
-        show officer neural with fade 
-    elif tries == 1:
-        show officer annoyed with fade
+        show officer neutral with fade 
     else :
         show officer angry with fade
 
@@ -198,23 +200,23 @@ label jail_door:
             jump jail_no
 
 label jail_no:
-    image officer evil = im.FactorScale("Sprite Male Dark Hair/Sprite Male Dark Hair Sly01.png", 0.5)
-    show officer evil
+    show officer neutral
     officer "Okay I understand. I will still send you an email with the dataset in case you change your mind. We really want you to do it."
     narrator "The officer leaves and you are still thinking about it a few hours later."
     narrator "In the end, you decide to give it a shot. After all, you can still decide later if you send them your model or not. It is still interesting to try, even in your free time."
     jump jail_email
 
 label jail_yes: 
-    image officer happy = im.FactorScale("Sprite Male Dark Hair/Sprite Male Dark Hair Smi01.png", 0.5)
+    image officer happy = im.FactorScale("Lisette/L3_Happy.png", 0.5)
     show officer happy
     officer "Great news ! You did the right choice, thank you !"
     officer "But be careful, we want a very accurate model ! Your country is counting on you. I'll send you the data later by mail. Bye then !"
+    hide officer with dissolve
     narrator "The officer leaves without giving you a chance to ask more questions."
     jump jail_email
 
 label jail_email:
-    hide officer
+
     hide house
     show office with fade
     show me confused
@@ -222,10 +224,11 @@ label jail_email:
     narrator "In the email, you get the dataset to train your model. It contains a lot of previous cases of prisoners and if they relapsed or not after being let go of jail."
     narrator "You have a lot of information about the prisoners, like the crime they committed, how long they were in jail for, and, of course, if they relapsed after being let go or not."
     narrator "However, you also have some other information including the prisoners' age, gender, ethnicity, country of birth, sexual orientation, religion, etc."
-    narrator "Do you decide to include this information in the model or not ?"
+
     show me neutral
 
     menu :
+        narrator "Do you decide to include this information in the model or not ?"
         "Yes, I want to include all this information":
             jump jail_include 
         "No, I don't want to include any of that":
@@ -234,15 +237,19 @@ label jail_email:
 label jail_include:
     narrator "You work for days and finally made your model. It reaches an amazing accuracy of 95\%. You decide to present it to the officer."
     hide me
+    hide office
+    show coffee with fade
+    show me happy at left
+    me "Hi ! I can proudly present to you my model which achieves an accuracy of 95\% !"
     show officer happy at right 
     officer "Thank you for your model, it is amazing and very accurate. We will use it. Congratulations on behalf of your country."
+    hide officer
     show me happy at left 
     narrator "The officer leaves and you are feeling proud of your work."
     hide me
-    hide officer
+    hide coffee
 
-    hide office
-    show coffee with fade
+    show office with fade   
     narrator "A few months later, you learn that an inmate friend you know might be released earlier." 
     show me shocked
     narrator "However, the judge decides to keep him in jail. You are suprised because you know that the inmate would behave well if released."
@@ -257,8 +264,13 @@ label jail_not_included:
     narrator "You work for days and finally made your model. It is impartial and unbiased since you didn't include all the biased information. Well done!"
     narrator "You decide to give it to the officer since you are quite proud of your work and are confident that it will not bias a certain part of the population."
     hide me
-    show officer annoyed
-    officer "Well, thank you for your model. However, your accuracy is only 77\%, that is not very good. We noticed that you omitted a lot of that data. We want you to include it."
+    hide office
+    show coffee with fade 
+    show me happy at left
+    me "Hi ! Here is my model, I did not include all the features such as gender, religion, ethnicity, ... so that we are sure that it is not biased."
+
+    show officer angry at right
+    officer "Well, thank you for your model. However, your accuracy is only 77\%, that is not very good. We want you to include the features you omitted."
     officer "If you don't include it, we know some other people that could do that for us."
 
     menu: 
@@ -269,6 +281,7 @@ label jail_not_included:
 
 label jail_nope:
     hide officer
+    show me sad at center with move
     narrator "You stood on your principles and didn't include biased data in your model, well done ! "
     narrator "However, sadly, Switzerland didn't want your model because they thought it had too low accuracy..."
     narrator "You are a bit disappointed but decide to move on to other projects."
@@ -418,7 +431,7 @@ label deepfake:
     show house with fade
     "A few weeks later at your home ..."
 
-    image company = im.FactorScale("Sprite Male Dark Hair/Sprite Male Dark Hair Sly01.png", 0.5)
+    image company = im.FactorScale("Lisette/L3_Neutral.png", 0.5)   
 
     show company
     "The company" "We are an advertisement company and we saw your deepfake video online and it is very impressive."
@@ -486,18 +499,18 @@ label translator:
     narrator "You finally got your EPFL diploma and are now a computer scientist working for a big translation company."
     narrator "You are in your office, enjoying a little break."
 
-    image boss sly = im.FactorScale("Sprite Male Dark Hair/Sprite Male Dark Hair Sly01.png", 0.5)
+    image boss neutral = im.FactorScale("Lisette/L3_Neutral.png", 0.5)
     show me happy at left with move
-    show boss sly at right
+    show boss neutral at right
     boss "Hey you, we were given a new task. Since I see that you are free at the moment and that you took Machine Learning in school, it will be for you !"
     boss "The task is to translate from Hungarian to English using a machine learning approach. No need to know Hungarian, don't worry !"
     boss "You just have to feed the Hungarian books already translated in English to a machine learning model to do it for you. I trust you, we only have one week to do so !"
     me "Hum, okay, I will do that boss ! I am on it."
     hide boss 
     show me happy at center with move
-    narrator "You look up a bit the available translated literature on the web. What do you decide to use ?"
 
     menu :
+        narrator "You look up a bit the available translated literature on the web. What do you decide to use ?"
         "I take all the available dataset to have as much data as possible !":
             jump translator_all
         "I will only take recent translations to be sure.":
@@ -507,7 +520,7 @@ label translator_all:
     narrator "You take all the dataset you can get access to and make your model with it. It translates with a very good accuracy. Your hungarian friend confirms it. "
     narrator "You decide to give your model proudly to your boss, even a few days early. "
     show me laugh at left with move
-    show boss sly at right
+    show boss neutral at right
     me "There you go boss, as promised, your Hungarian-English translator based on machine learning. Even a few days early, ha ! "
     boss "Thank you, it has a very good accuracy ! Keep up the good work. "
     narrator "You are happy and move on to other tasks."
@@ -531,9 +544,9 @@ label translator_recent:
     narrator "You take only the recent dataset you can get access to (last 10 years) and make your model with it."
     narrator "However, you notice that the accuracy is not very good."
     narrator "Indeed, the dataset of recent translated Hungarian books to English is clearly not large enough for your needs. "
-    narrator "Days pass and your model performance is not optimal. What do you do ?"
 
     menu :
+        narrator "Days pass and your model performance is not optimal. What do you do ?"
         "I want to take all available dataset.":
             jump translator_all
         "I keep this and present it to my boss.":
@@ -541,11 +554,12 @@ label translator_recent:
 
 label translator_present:
     show me neutral at left with move 
-    image boss annoyed = im.FactorScale("Sprite Male Dark Hair/Sprite Male Dark Hair Ann01.png", 0.5)
-    show boss annoyed at right 
+
     me "There you go boss, your Hungarian-English translator based on machine learning. "
+    image boss angry = im.FactorScale("Lisette/L3_Angry.png", 0.5)
+    show boss angry at right 
     boss "Thank you for your work, but the accuracy is not very good. I think our competitors will destroy us." 
-    show boss sly at right
+    show boss neutral at right  
     boss "Well still, let's present the model to our customer. Your job is now done !"
     narrator "You get no news from this project and move on to other tasks."
     hide boss 
@@ -612,6 +626,3 @@ menu:
     "I am okay thank you, bye !":
         hide ml
         jump start
-
-
-
