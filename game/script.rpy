@@ -37,10 +37,7 @@ image tweet = im.FactorScale("tweet.png", 0.4)
 
 
 label start:
-    # $ gui.textbox_yalign = 1.0
-    # $ gui.rebuild()
-    # $ gui.SetPreference("textbox_yalign", 1.0)
-    # $ gui.rebuild()
+
     play music background_music loop
 
 menu:
@@ -68,10 +65,7 @@ menu:
 # INTRODUCTION
         
 label introduction:
-    # $ gui.textbox_yalign = 0.5
-    # $ gui.rebuild()
-    # $ gui.SetPreference("textbox_yalign", 0.5)
-    # $ gui.rebuild()
+
     image ml = "machine-learning-in-healthcare.jpg"
     show ml with fade
     # quick welcome
@@ -194,9 +188,9 @@ label jail_door:
     officer "Do you accept to take on this task ? You would be paid very well and the country will thank you !"
 
     menu :
-        "Yes, of course, let's do this ! It seems interesting and for the good cause.":
+        "Yes, of course, let's do this ! It seems interesting and for the good cause":
             jump jail_yes
-        "No thank you, I sense a trap.":
+        "No thank you, I sense a trap":
             jump jail_no
 
 label jail_no:
@@ -298,7 +292,7 @@ label jail_concl:
     image jail_image = "jail.jpg"
     show jail_image with fade
 
-    narrator "This case hopefully showed you the dilemmas of including biased data in a machine learning model."
+    narrator "This case hopefully showed you the dilemma of including biased data in a machine learning model."
 
     # feedback loops
     narrator "We can also note that there is a big problem with the fact that if we make a decision to feed biased data to our model now, the model will output biased results."
@@ -511,9 +505,9 @@ label translator:
 
     menu :
         narrator "You look up a bit the available translated literature on the web. What do you decide to use ?"
-        "I take all the available dataset to have as much data as possible !":
+        "I take all the available dataset to have as much data as possible":
             jump translator_all
-        "I will only take recent translations to be sure.":
+        "I will only take recent translations to be sure":
             jump translator_recent
 
 label translator_all:     
@@ -537,8 +531,6 @@ label translator_all:
     jump translator_end
 
 
-
-
 label translator_recent:
     show me neutral
     narrator "You take only the recent dataset you can get access to (last 10 years) and make your model with it."
@@ -547,9 +539,9 @@ label translator_recent:
 
     menu :
         narrator "Days pass and your model performance is not optimal. What do you do ?"
-        "I want to take all available dataset.":
+        "I want to take all available dataset":
             jump translator_all
-        "I keep this and present it to my boss.":
+        "I keep this and present it to my boss":
             jump translator_present
 
 label translator_present:
@@ -600,7 +592,6 @@ label end:
     image ml = "machine-learning-in-healthcare.jpg"
     show ml with fade
 
-    # thank you for playing
     narrator "You made it to the end of the game ! Well done !"
     narrator "You are hopefully now more aware of how machine learning use can give rise to ethical issues."
     narrator "It is very important to keep these issues in mind while working with machine learning and not only focus on the technical side."
@@ -613,14 +604,16 @@ menu:
 
     narrator "If you want to learn more about it and satisfy your thirst of knowledge, you can look at the following resources:"
 
-    "1. A moral experiment about automated cars developed by MIT !":
-        # $ webbrowser.open_new(self.url)
+    "1. A real-life software developed similar to the one in the jailbird case !":
+        $ OpenURL("https://en.wikipedia.org/wiki/COMPAS_(software)")()
+        jump resources
+    "2. A moral experiment about automated cars developed by MIT !":
         $ OpenURL("https://www.moralmachine.net/")()
         jump resources
-    "2. The paperclip game about how an AI can get out of control when instructed with a simple goal !":
+    "3. The paperclip game about how an AI can get out of control when instructed with a simple goal !":
         $ OpenURL("https://www.decisionproblem.com/paperclips/index2.html")()
         jump resources
-    "3. A short quite funny video also about an AI getting out of control by Tom Scott !":
+    "4. A short quite funny video also about an AI getting out of control by Tom Scott !":
         $ OpenURL("https://youtu.be/-JlxuQ7tPgQ")()
         jump resources
     "I am okay thank you, bye !":
