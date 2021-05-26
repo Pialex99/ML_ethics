@@ -577,7 +577,8 @@ label translator_end:
 
     narrator "This case hopefully showed you how you should always be careful while selecting a dataset."
     narrator "Here, there is a trade-off between a good accuracy in translation (taking all the dataset) or unbiased data (only taking recent datasets)."
-    narrator "Indeed, the Hungarian language doesn't have gendered pronouns in front of verbs and that is definitely something to consider in this task before jumping into it."
+    narrator "Indeed, Hungarian is a gender-neutral language. It means that \"he\" and \"she\" are the same neutral pronoun."
+    narrator "That is definitely something to consider in this task before jumping into it."
     narrator "Not knowing the Hungarian language, it is very hard to think about this fact beforehand, leading to a design flaw."
     narrator "Always try to think of potential biases that you could have in your model before starting a task !"
 
