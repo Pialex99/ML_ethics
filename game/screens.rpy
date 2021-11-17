@@ -296,17 +296,17 @@ screen credits():
             vbox: #this puts the elements in a vertical box
                 text "{color=#800080}Introduction text:{/color} {i}(1) A. K. Langlotz Russ Altman,Curt, Health Care AI Systems Are Biased, Scientific American. https://www.scientificamerican.com/article/health-care-ai-systems-are-biased/ (accessed Apr. 14, 2021), (2) ‘How medicine discriminates against non-white people and women’, The Economist, Apr. 08, 2021., (3) P. Mozur, ‘One Month, 500,000 Face Scans: How China Is Using A.I. to Profile a Minority’, The New York Times, Apr. 14, 2019.{/i}"
                 text ""
-                text "{color=#800080}Background images:{/color} {i} (1) https://en.wikipedia.org/wiki/X-ray, (2) https://www.healthcatalyst.com/machine-learning-in-healthcare-now-for-everyone, (3) https://pulseoximeters.blogspot.com/, (4) https://www.nytimes.com/2020/07/06/world/asia/china-xinjiang-uighur-court.html, (5) https://twitter.com/DoraVargha/status/1373211762108076034{/i}"
+                text "{color=#800080}Images:{/color} {i} (1) https://en.wikipedia.org/wiki/X-ray, (2) https://www.healthcatalyst.com/machine-learning-in-healthcare-now-for-everyone, (3) https://pulseoximeters.blogspot.com/, (4) https://www.nytimes.com/2020/07/06/world/asia/china-xinjiang-uighur-court.html, (5) https://twitter.com/DoraVargha/status/1373211762108076034{/i}"
                 text ""
                 text "{color=#800080}Videos:{/color} {i} (1) https://www.youtube.com/watch?v=87QwWpzVy7I&ab_channel=RagalaiMannan, (2) https://www.youtube.com/watch?v=iyiOVUbsPcM{/i}"
                 text ""
-                text "{color=#800080}Character sprites:{/color} {i} (1) by Red: https://red-baby.itch.io/sprite-pack-female-dark-hair, (2) by Tidylia: https://tidylia.itch.io/visual-novel-sprite-jean & https://tidylia.itch.io/visual-novel-sprite-coral, (3) by J. Claudee: https://sraye.itch.io/dragan-visual-novel-sprite & https://sraye.itch.io/lisette, (4) by Sutemo: https://sutemo.itch.io/male-character-sprite-for-visual-novel {/i}"
+                text "{color=#800080}Character sprites:{/color} {i} (1) By Tâm Nguyên, (2) by Red: https://red-baby.itch.io/sprite-pack-female-dark-hair"
                 text ""
-                text "{color=#800080}Music:{/color} {i}Tâm Nguyen - Concerto number 1 - “Embresia” https://soundcloud.com/arthurion-94337438{/i}"
+                text "{color=#800080}Music:{/color} {i}Tâm Nguyên - Concerto number 1 - “Embresia” https://soundcloud.com/arthurion-94337438{/i}"
                 text ""
                 text "{color=#800080}Thank you for the feedback:{/color} {i}Arthur, Axel, Céline, Céline (Cowcow), Charles, Lucas, Tâm, Professors Roland Tormey and Martin Jäggi{/i}"
                 text ""
-                text "{color=#800080} Made by:{/color}{i} Alex and Ester{/i}"
+                text "{color=#800080} Made by:{/color}{i} Alexandre Pinazza and Ester Simkova{/i}"
                 text ""
                 textbutton _("Return") action Return()
 

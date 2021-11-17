@@ -10,17 +10,15 @@ image me coy = im.FactorScale("Portraits/DF_Coy.png", 0.5)
 image me happy = im.FactorScale("Portraits/DF_Happy.png", 0.5)
 image me laugh = im.FactorScale("Portraits/DF_Laugh.png", 0.5)
 image me neutral = im.FactorScale("Portraits/DF_Neutral.png", 0.5)
-image me pouty = im.FactorScale("Portraits/DF_Pouty.png", 0.5)
 image me sad = im.FactorScale("Portraits/DF_Sad.png", 0.5)
 image me shocked = im.FactorScale("Portraits/DF_Shock.png", 0.5)
-image me shy = im.FactorScale("Portraits/DF_Shy.png", 0.5)
 
 # for the jail case
 define officer = Character("Swiss penal facility representative")
 
 # for the deepfake case
-define friend0 = Character("Ester")
-define friend1 = Character("Alex")
+define friend0 = Character("Li")
+define friend1 = Character("Steve")
 define friend2 = Character("Lea")
 
 # for the google translate case
@@ -33,7 +31,7 @@ image house = im.FactorScale("Backgrounds/house a day.png", 0.7)
 image coffee = im.FactorScale("Backgrounds/cafe a day.png", 0.7)
 image school = im.FactorScale("Backgrounds/school hallway a evening.png", 0.7)
 
-image tweet = im.FactorScale("tweet.png", 0.4)
+image tweet = im.FactorScale("tweet.png", 0.47)
 
 
 label start:
@@ -70,6 +68,7 @@ label introduction:
     show ml with fade
     # quick welcome
     narrator "Hello, you, machine learning student !" 
+    # give you name/a random nb/ your favorite food/generate a random nb generator
     narrator "This game is here to make you aware of the ethical dilemmas that can arise from machine learning uses."
     narrator "It is very important to be aware of them early in your machine learning journey and we thank you for choosing to play this game, you rock !"
     narrator "The game will consist in a short introduction to why it is important to learn about machine learning ethics and the consequences of not paying attention to them."
@@ -174,8 +173,8 @@ label jail_nodoor:
 
 
 label jail_door:
-    image officer angry = im.FactorScale("Lisette/L3_Angry.png", 0.5)
-    image officer neutral = im.FactorScale("Lisette/L3_Neutral.png", 0.5)
+    image officer angry = im.FactorScale("Tam_characters/Officer/representant_penal_angry.png", 0.65)
+    image officer neutral = im.FactorScale("Tam_characters/Officer/representant_penal_neutral.png", 0.65)
 
     if tries == 0:
         show officer neutral with fade 
@@ -201,7 +200,7 @@ label jail_no:
     jump jail_email
 
 label jail_yes: 
-    image officer happy = im.FactorScale("Lisette/L3_Happy.png", 0.5)
+    image officer happy = im.FactorScale("Tam_characters/Officer/representant_penal_happy.png", 0.65)
     show officer happy
     officer "Great news ! You did the right choice, thank you !"
     officer "But be careful, we want a very accurate model ! Your country is counting on you. I'll send you the data later by mail. Bye then !"
@@ -220,6 +219,19 @@ label jail_email:
     narrator "However, you also have some other information including the prisoners' age, gender, ethnicity, country of birth, sexual orientation, religion, etc."
 
     show me neutral
+    python:
+        text = renpy.input("You have the choice between including all information or not. What ethical dilemmas do you identify there ?", length=300) # put the text above so it doesn't déborde
+        text = text.strip()
+
+        if not text:
+            text = "Not answered."
+        else:
+            fd = open('reponses.txt', 'a') # put server url with file there, call the server -> at EPFL server only read
+            # or put the html file of the game on EPFL web server
+            fd.write(text + '\n\n')
+            fd.close()
+            # store as csv file: user, date, question then load into pandas and do stats
+            # see if itch.io allows 
 
     menu :
         narrator "Do you decide to include this information in the model or not ?"
@@ -293,6 +305,7 @@ label jail_concl:
     show jail_image with fade
 
     narrator "This case hopefully showed you the dilemma of including biased data in a machine learning model."
+    narrator "Here are the dilemmas that you identified: {color=#800080} [text]{/color} {i}. Have you seen it coming ?" # do we keep this if person didn't answer ?
 
     # feedback loops
     narrator "We can also note that there is a big problem with the fact that if we make a decision to feed biased data to our model now, the model will output biased results."
@@ -320,9 +333,9 @@ label deepfake:
     narrator "You are a student of the Machine Learning class at EPFL."
     narrator "One day after the class, you meet with some of your friends who also take the class."
 
-    image friend0 happy = im.FactorScale("Female Dark Hair/sprite female dark hair Smi01.png", 0.6)
-    image friend1 happy = im.FactorScale("Jean/jean_happy.png", 0.6)
-    image friend2 happy = im.FactorScale("Coral/coral_happy.png", 0.6)
+    image friend0 happy = im.FactorScale("Tam_characters/Traitor/traitor_happy.png", 0.65)
+    image friend1 happy = im.FactorScale("Tam_characters/steve.png", 0.65)
+    image friend2 happy = im.FactorScale("Tam_characters/girl.png", 0.65)
 
 
     narrator "You are all watching some videos on the internet to take a small break from doing the machine learning exercises."
@@ -410,7 +423,7 @@ label deepfake:
     show me laugh 
     narrator "It is very close but you win the bet !"
 
-    image friend0 angry = im.FactorScale("Female Dark Hair/sprite female dark hair Ang01.png", 0.6)
+    image friend0 angry = im.FactorScale("Tam_characters/Traitor/traitor_angry.png", 0.65)
     hide me
     show friend0 angry
     narrator "Your final opponent is mad at you and out of an angry outburst she puts your work online !"
@@ -425,7 +438,7 @@ label deepfake:
     show house with fade
     "A few weeks later at your home ..."
 
-    image company = im.FactorScale("Lisette/L3_Neutral.png", 0.5)   
+    image company = im.FactorScale("Tam_characters/Boss/boss_neutral.png", 0.65)   
 
     show company
     "The company" "We are an advertisement company and we saw your deepfake video online and it is very impressive."
@@ -446,14 +459,14 @@ label deepfake:
             hide me
             hide house
             show coffee with fade
-            show company at right
-            image friend0 neutral = im.FactorScale("Female Dark Hair/sprite female dark hair Neu01.png", 0.6)
-            show friend0 neutral at left
+            show company at left
+            image friend0 neutral = im.FactorScale("Tam_characters/Traitor/traitor_neutral.png", 0.65)
+            show friend0 neutral at right
             narrator "The company then contacts your friends."
 
             "The company" "We saw your deepfake video online and it is very impressive. We were wondering if you could sell us the code for it ?"
             "The company" "You will be nicely paid !"
-            show friend0 happy at left
+            show friend0 happy at right
             friend0 "Sure, here it is !"
 
             narrator "You friends are now rich and your code is gone without your consent."
@@ -493,7 +506,7 @@ label translator:
     narrator "You finally got your EPFL diploma and are now a computer scientist working for a big translation company."
     narrator "You are in your office, enjoying a little break."
 
-    image boss neutral = im.FactorScale("Lisette/L3_Neutral.png", 0.5)
+    image boss neutral = im.FactorScale("Tam_characters/Boss/boss_neutral.png", 0.65)
     show me happy at left with move
     show boss neutral at right
     boss "Hey you, we were given a new task. Since I see that you are free at the moment and that you took Machine Learning in school, it will be for you !"
@@ -548,7 +561,7 @@ label translator_present:
     show me neutral at left with move 
 
     me "There you go boss, your Hungarian-English translator based on machine learning. "
-    image boss angry = im.FactorScale("Lisette/L3_Angry.png", 0.5)
+    image boss angry = im.FactorScale("Tam_characters/Boss/boss_angry.png", 0.65)
     show boss angry at right 
     boss "Thank you for your work, but the accuracy is not very good. I think our competitors will destroy us." 
     show boss neutral at right  
