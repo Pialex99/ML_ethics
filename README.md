@@ -5,7 +5,7 @@ Here is a game made during the *How People Learn II* class given by [Roland Torm
 ## How to run the game
 
 - On MacOS: 
-    Run the `ML_ethics.app` application. 
+    Run the `ML_ethics.app` application, you might get a warning _“ML_ethics” cannot be opened because the developer cannot be verified_. In that case you need to open system preference -> _Security & Privacy_ then click on _Open Anyway_.
 - On Linux:
     Run the `ML_ethics.sh` script.
 - On Windows:
